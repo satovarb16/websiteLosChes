@@ -120,18 +120,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 </div>
 
 
-<!-- ─── MANIFESTO ─────────────────────────────────────────────────────────── -->
-<section class="manifesto-section" aria-label="Filosofía">
-  <div class="section-inner">
-    <p class="manifesto-text reveal" data-reveal>
-      Todo lo bueno<br /><em>tarda.</em>
-    </p>
-  </div>
-</section>
-
-
 <!-- ─── HISTORIA 1 ────────────────────────────────────────────────────────── -->
 <section id="historia" class="story story--image-left" aria-labelledby="story1-heading">
+  <div class="section-inner story-manifesto-header">
+    <p class="manifesto-text">Todo lo bueno<br /><em>tarda.</em></p>
+  </div>
   <div class="story-inner section-inner">
     <div class="story-image reveal" data-reveal>
       <img src="/images/historia-1.png" alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" width="600" height="750" />
@@ -949,67 +942,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   .nav-link { font-size: 1.25rem; }
 }
 
-/* ─── HERO ATMOSPHERE ─────────────────────────────────────────────────────── */
-.hero-decor {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-decor-word {
-  position: absolute;
-  font-family: var(--font-display);
-  font-size: clamp(9rem, 19vw, 17rem);
-  font-weight: 700;
-  color: oklch(0.75 0.14 85 / 0.05);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  top: 50%;
-  right: -0.08em;
-  transform: translateY(-55%);
-  user-select: none;
-  white-space: nowrap;
-}
-
-/* Hero orbs — radial-gradient directo, sin filter:blur que crea "fango" */
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.hero-orb--ember {
-  width: 55%;
-  height: 70%;
-  background: radial-gradient(ellipse at center, oklch(0.55 0.19 40 / 0.20) 0%, transparent 65%);
-  top: -5%;
-  right: 5%;
-  animation: orb-breathe 9s ease-in-out infinite alternate;
-}
-
-.hero-orb--gold {
-  width: 40%;
-  height: 45%;
-  background: radial-gradient(ellipse at center, oklch(0.75 0.14 85 / 0.12) 0%, transparent 60%);
-  bottom: 5%;
-  right: 20%;
-  animation: orb-breathe 12s 2s ease-in-out infinite alternate;
-}
-
-.hero-orb--deep {
-  width: 30%;
-  height: 35%;
-  background: radial-gradient(ellipse at center, oklch(0.55 0.19 40 / 0.08) 0%, transparent 55%);
-  top: 30%;
-  left: 2%;
-  animation: orb-breathe 15s 4s ease-in-out infinite alternate;
-}
-
-@keyframes orb-breathe {
-  0%   { opacity: 0.5; transform: scale(0.92); }
-  100% { opacity: 1;   transform: scale(1.08); }
-}
 
 /* ─── HERO ────────────────────────────────────────────────────────────────── */
 .hero {
@@ -1061,8 +993,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 .hero-heading em {
+  display: inline-block;
   font-style: italic;
   color: var(--color-primary);
+  transition: transform 1000ms 200ms var(--ease-out);
+}
+
+@starting-style {
+  .hero-heading em { transform: translateX(-20px); }
 }
 
 .hero-body {
@@ -1083,65 +1021,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   transition: opacity 600ms 120ms var(--ease-out), transform 600ms 120ms var(--ease-out);
 }
 
-.hero-composition {
-  aspect-ratio: 3/4;
-  width: 100%;
-  border-radius: var(--radius-lg);
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(
-    ellipse at 50% 65%,
-    oklch(0.22 0.06 42) 0%,
-    oklch(0.16 0.02 45) 55%,
-    oklch(0.14 0.01 50) 100%
-  );
-  border: 1px solid oklch(0.55 0.19 40 / 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-}
-
-.hero-comp-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 75%, oklch(0.55 0.19 40 / 0.45) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 40%, oklch(0.75 0.14 85 / 0.12) 0%, transparent 50%);
-  animation: comp-breathe 5s ease-in-out infinite;
-}
-
-@keyframes comp-breathe {
-  0%, 100% { opacity: 0.8; }
-  50%       { opacity: 1; }
-}
-
-.hero-comp-flame {
-  width: 80px;
-  height: 100px;
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 0 20px oklch(0.55 0.19 40 / 0.8))
-          drop-shadow(0 0 40px oklch(0.75 0.14 85 / 0.4));
-  animation: flame-flicker 3s ease-in-out infinite;
-}
-
-@keyframes flame-flicker {
-  0%, 100% { transform: scaleX(1) translateY(0); filter: drop-shadow(0 0 20px oklch(0.55 0.19 40 / 0.8)) drop-shadow(0 0 40px oklch(0.75 0.14 85 / 0.4)); }
-  25%       { transform: scaleX(0.96) translateY(-2px); filter: drop-shadow(0 0 28px oklch(0.55 0.19 40 / 1)) drop-shadow(0 0 50px oklch(0.75 0.14 85 / 0.5)); }
-  75%       { transform: scaleX(1.03) translateY(1px); filter: drop-shadow(0 0 16px oklch(0.55 0.19 40 / 0.6)) drop-shadow(0 0 30px oklch(0.75 0.14 85 / 0.3)); }
-}
-
-.hero-comp-label {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: oklch(0.55 0.19 40 / 0.5);
-  position: relative;
-  z-index: 1;
-}
 
 .hero-img {
   width: 100%;
@@ -1151,25 +1030,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   display: block;
 }
 
-.hero-scroll-indicator {
-  position: absolute;
-  bottom: var(--space-8);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.hero-scroll-indicator span {
-  display: block;
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--color-primary), transparent);
-  animation: scroll-pulse 2s ease-in-out infinite;
-}
-
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
-  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
-}
 
 @media (max-width: 768px) {
   .hero-inner {
@@ -1179,7 +1039,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
   .hero-image { order: -1; }
 
-  .hero-img-placeholder { aspect-ratio: 16/9; }
 }
 
 /* ─── STORY ───────────────────────────────────────────────────────────────── */
@@ -1688,7 +1547,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 /* ─── RESERVATIONS ────────────────────────────────────────────────────────── */
 .reservations-section {
-  padding-block: clamp(5rem, 10vw, 10rem);
+  padding-block: clamp(9rem, 18vw, 18rem);
   background-color: var(--color-bg);
   background-image: url('/images/gallery-fire.jpg');
   background-size: cover;
@@ -1701,7 +1560,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   content: '';
   position: absolute;
   inset: 0;
-  background: oklch(0.10 0.01 50 / 0.87);
+  background: oklch(0.10 0.01 50 / 0.78);
   pointer-events: none;
 }
 
@@ -1711,7 +1570,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   font-family: var(--font-display);
   font-size: clamp(6rem, 14vw, 12rem);
   font-weight: 700;
-  color: oklch(0.75 0.14 85 / 0.03);
+  color: oklch(0.75 0.14 85 / 0.07);
   letter-spacing: -0.03em;
   bottom: -0.1em;
   left: 50%;
@@ -1882,7 +1741,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .stats-strip {
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding-block: clamp(2rem, 4vw, 3.5rem);
+  padding-block: clamp(3rem, 6vw, 5.5rem);
   background: oklch(0.155 0.012 50 / 0.55);
 }
 
@@ -1903,7 +1762,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 .stat-number {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(3.25rem, 6vw, 5.5rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -1944,32 +1803,36 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   }
 }
 
+.story-manifesto-header {
+  padding-top: clamp(4rem, 8vw, 8rem);
+  padding-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
 /* ─── MANIFESTO ───────────────────────────────────────────────────────────── */
-.manifesto-section {
-  padding-block: clamp(5rem, 10vw, 10rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.manifesto-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.55 0.19 40 / 0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.75 0.14 85 / 0.06) 0%, transparent 55%);
-  pointer-events: none;
-}
-
 .manifesto-text {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(4rem, 9vw, 7.5rem);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 0.9;
   letter-spacing: -0.04em;
   color: var(--color-ink);
   max-width: none;
   text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .manifesto-text {
+      animation: manifesto-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 55%;
+    }
+  }
+}
+
+@keyframes manifesto-arrive {
+  from { opacity: 0.18; transform: scale(0.975) translateY(10px); }
+  to   { opacity: 1;    transform: none; }
 }
 
 .manifesto-text em {
@@ -1997,7 +1860,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   grid-template-columns: 1fr 2fr;
   gap: clamp(2rem, 6vw, 6rem);
   align-items: baseline;
-  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: clamp(2.5rem, 4.5vw, 4.5rem);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -2054,6 +1917,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 @media (hover: hover) and (pointer: fine) {
   .gallery-img-wrap:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: none) {
+  .gallery-caption {
     opacity: 1;
     transform: translateY(0);
   }
@@ -2178,7 +2048,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   }
 }
 
-.hero-scroll-indicator { z-index: 4; }
 
 
 @media (max-width: 900px) {
@@ -2227,7 +2096,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 /* ─── RESERVACIONES: headline teatral ────────────────────────────────────── */
 .reservations-content h2 {
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-size: clamp(4.5rem, 10vw, 9rem);
   letter-spacing: -0.04em;
   line-height: 0.95;
   margin-bottom: var(--space-6);
@@ -2306,25 +2175,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .gallery-item[data-reveal-delay="2"] .gallery-img-wrap { transition-delay: 120ms; }
 .gallery-item[data-reveal-delay="3"] .gallery-img-wrap { transition-delay: 180ms; }
 
-.gallery-index {
-  position: absolute;
-  top: 0.875rem;
-  left: 1rem;
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: oklch(1 0 0 / 0.4);
-  z-index: 3;
-  line-height: 1;
-  transition: opacity 220ms var(--ease-out);
-  user-select: none;
-  pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .gallery-img-wrap:hover .gallery-index { opacity: 0; }
-}
 
 /* Ken Burns on the fire image */
 @media (prefers-reduced-motion: no-preference) {
@@ -2351,14 +2201,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .pillar-name::before {
   content: counter(pillar, decimal-leading-zero);
   display: block;
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: oklch(0.75 0.14 85 / 0.4);
-  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  color: oklch(0.75 0.14 85 / 0.12);
+  margin-bottom: var(--space-4);
   font-style: normal;
-  transition: color 150ms var(--ease-out);
+  transition: color 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
