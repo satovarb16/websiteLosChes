@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 const whatsappNumber = "+519547707573";
 const whatsappMsg = encodeURIComponent("Hola, quiero hacer una reserva en Los Ches.");
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
@@ -61,13 +62,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 <section id="inicio" class="hero" aria-labelledby="hero-heading">
   <!-- Foto full-bleed — directa en .hero para que position:absolute;inset:0 sea relativo a la sección -->
   <div class="hero-image" aria-hidden="true">
-    <img
+    <Image
       src="/images/hero.png"
       alt="Parrilla Los Ches — cortes Angus al kamado con chorizos artesanales"
       class="hero-img"
-      width="800"
-      height="1000"
+      width={800}
+      height={1000}
       fetchpriority="high"
+      loading="eager"
     />
   </div>
 
@@ -127,7 +129,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   </div>
   <div class="story-inner section-inner">
     <div class="story-image reveal" data-reveal>
-      <img src="/images/historia-1.png" alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" width="600" height="750" />
+      <Image src="/images/historia-1.png" alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" width={600} height={750} />
     </div>
     <div class="story-text reveal" data-reveal data-reveal-delay="1">
       <h2 id="story1-heading">
@@ -162,7 +164,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       </p>
     </div>
     <div class="story-image reveal" data-reveal data-reveal-delay="1">
-      <img src="/images/gallery-kamado.png" alt="El kamado rojo de Los Ches — técnica japonesa, alma peruana" class="story-img" loading="lazy" width="600" height="750" />
+      <Image src="/images/gallery-kamado.png" alt="El kamado rojo de Los Ches — técnica japonesa, alma peruana" class="story-img" loading="lazy" width={600} height={750} />
     </div>
   </div>
 </section>
@@ -200,42 +202,42 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       <div class="gallery-item reveal gallery-item--1" data-reveal data-reveal-delay="1" role="listitem">
         <div class="gallery-img-wrap">
 
-          <img src="/images/historia-2.png" alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" />
+          <Image src="/images/historia-2.png" alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Mesa compartida</p>
         </div>
       </div>
       <div class="gallery-item reveal gallery-item--2" data-reveal data-reveal-delay="2" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="/images/gallery-tomahawk.png" alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" />
+          <Image src="/images/gallery-tomahawk.png" alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Tomahawk</p>
         </div>
       </div>
       <div class="gallery-item reveal gallery-item--3" data-reveal data-reveal-delay="1" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="/images/gallery-angus.png" alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" />
+          <Image src="/images/gallery-angus.png" alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Bife Ancho Angus</p>
         </div>
       </div>
       <div class="gallery-item reveal gallery-item--4" data-reveal data-reveal-delay="2" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="/images/gallery-lomo.png" alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" />
+          <Image src="/images/gallery-lomo.png" alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Lomo Saltado</p>
         </div>
       </div>
       <div class="gallery-item reveal gallery-item--5" data-reveal data-reveal-delay="3" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="/images/gallery-burger.png" alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" />
+          <Image src="/images/gallery-burger.png" alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Che Burger</p>
         </div>
       </div>
       <div class="gallery-item reveal gallery-item--6" data-reveal data-reveal-delay="1" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="/images/gallery-fire.jpg" alt="Brasas vivas — el fuego que da vida a cada corte" loading="lazy" class="gallery-img" />
+          <Image src="/images/gallery-fire.jpg" alt="Brasas vivas — el fuego que da vida a cada corte" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Brasas vivas</p>
         </div>
@@ -760,7 +762,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   <div class="section-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/logo.svg" alt="Los Ches Grill & Meals" width="80" height="80" />
+        <Image src="/logo.svg" alt="Los Ches Grill & Meals" width={80} height={80} />
         <p>La parrilla que reúne<br />a quienes más quieres.</p>
       </div>
 
