@@ -959,7 +959,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { display: flex; position: relative; z-index: 1; }
   .nav-cta { display: none; }
 
   .nav-menu {
@@ -971,9 +971,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     transform: translateX(100%);
     transition: transform var(--duration-slow) var(--ease-out);
     z-index: var(--z-overlay);
+    pointer-events: none;
   }
 
-  .nav-menu.is-open { transform: translateX(0); }
+  .nav-menu.is-open { transform: translateX(0); pointer-events: auto; }
 
   .nav-menu ul {
     flex-direction: column;
