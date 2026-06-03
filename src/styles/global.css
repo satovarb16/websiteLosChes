@@ -2,11 +2,11 @@
 
 /* ─── Tokens ──────────────────────────────────────────────────────────────── */
 :root {
-  --color-bg:         oklch(0.13 0.01 50);
+  --color-bg:         oklch(0.10 0.012 40);
   --color-surface:    oklch(0.17 0.012 50);
   --color-surface-2:  oklch(0.22 0.015 50);
-  --color-primary:    oklch(0.75 0.14 85);
-  --color-secondary:  oklch(0.55 0.19 40);
+  --color-primary:    #FF4D00;
+  --color-secondary:  oklch(0.50 0.22 20);
   --color-tertiary:   oklch(0.72 0.17 75);
   --color-ink:        oklch(0.88 0.018 80);
   --color-ink-muted:  oklch(0.68 0.018 80);
@@ -39,7 +39,7 @@
   --ease-drawer:  cubic-bezier(0.32, 0.72, 0, 1);
 
   --shadow-sm:           0 1px 3px oklch(0 0 0 / 0.5);
-  --shadow-glow-primary: 0 0 24px oklch(0.75 0.14 85 / 0.22);
+  --shadow-glow-primary: 0 0 24px oklch(0.63 0.245 35 /0.22);
   --shadow-glow-ember:   0 0 24px oklch(0.55 0.19 40 / 0.28);
 
   --z-sticky:  10;
@@ -57,21 +57,7 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  background-image:
-    /* Ember glow — fuego desde abajo, como el kamado */
-    radial-gradient(ellipse 110% 65% at 50% 115%, oklch(0.50 0.20 38 / 0.32) 0%, transparent 62%),
-    /* Amber lateral — luz de vela, derecha */
-    radial-gradient(ellipse 55% 45% at 95% 80%,  oklch(0.72 0.15 76 / 0.18) 0%, transparent 58%),
-    /* Amber lateral — luz de vela, izquierda */
-    radial-gradient(ellipse 45% 60% at 3%  70%,  oklch(0.55 0.17 42 / 0.14) 0%, transparent 58%),
-    /* Viñeta superior — techo oscuro, ambiente íntimo */
-    radial-gradient(ellipse 130% 35% at 50% -6%, oklch(0.05 0.005 50 / 0.60) 0%, transparent 70%),
-    /* Viñeta lateral izquierda */
-    radial-gradient(ellipse 25% 100% at 0%  50%,  oklch(0.05 0.005 50 / 0.30) 0%, transparent 68%),
-    /* Viñeta lateral derecha */
-    radial-gradient(ellipse 25% 100% at 100% 50%, oklch(0.05 0.005 50 / 0.30) 0%, transparent 68%);
-  /* fixed crea compositing bugs en iOS Safari — solo activar en desktop */
+  background-color: oklch(0.10 0.012 40);
   background-attachment: scroll;
   color: var(--color-ink);
   font-family: var(--font-body);
@@ -80,6 +66,112 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
+/* ─── Mesh gradient background ───────────────────────────────────────────── */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.mesh--1 {
+  width: 680px;
+  height: 780px;
+  background: radial-gradient(ellipse at center, oklch(0.44 0.22 36 / 0.48) 0%, transparent 70%);
+  filter: blur(64px);
+  left: -180px;
+  top: 30%;
+  animation: blob-1 24s ease-in-out infinite alternate;
+}
+
+.mesh--2 {
+  width: 520px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, oklch(0.62 0.17 72 / 0.32) 0%, transparent 70%);
+  filter: blur(56px);
+  right: -130px;
+  top: 38%;
+  animation: blob-2 30s ease-in-out infinite alternate;
+}
+
+.mesh--3 {
+  width: 760px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, oklch(0.38 0.21 28 / 0.40) 0%, transparent 68%);
+  filter: blur(72px);
+  left: 15%;
+  bottom: -160px;
+  animation: blob-3 20s ease-in-out infinite alternate;
+}
+
+@keyframes blob-1 {
+  0%   { transform: translate(0,     0)     scale(1);    }
+  40%  { transform: translate(90px, -80px)  scale(1.14); }
+  100% { transform: translate(45px,  55px)  scale(0.93); }
+}
+
+@keyframes blob-2 {
+  0%   { transform: translate(0,      0)    scale(1);    }
+  45%  { transform: translate(-80px,  65px) scale(1.10); }
+  100% { transform: translate(-35px, -55px) scale(1.07); }
+}
+
+@keyframes blob-3 {
+  0%   { transform: translate(0,    0)      scale(1);    }
+  35%  { transform: translate(70px, -100px) scale(1.18); }
+  100% { transform: translate(-50px,-70px)  scale(0.90); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mesh-blob { animation: none; }
+}
+
+/* ─── Smoke background ────────────────────────────────────────────────────── */
+.smoke-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.smoke-wisp {
+  position: absolute;
+  bottom: -5%;
+  border-radius: 40% 40% 30% 30% / 10% 10% 5% 5%;
+  background: radial-gradient(ellipse 60% 100% at 50% 100%, oklch(0.72 0.06 55 / 0.13) 0%, transparent 70%);
+  filter: blur(22px);
+  will-change: transform, opacity;
+  animation: smoke-rise 30s ease-in-out infinite;
+}
+
+@keyframes smoke-rise {
+  0%   { transform: translateY(0)       translateX(0)   scaleX(1);    opacity: 0;   }
+  10%  { opacity: 1; }
+  70%  { opacity: 0.5; }
+  100% { transform: translateY(-110vh)  translateX(12px) scaleX(1.2); opacity: 0;   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke-wisp { animation: none; opacity: 0; }
+}
+
+.smoke--1 { left:  10%; width:  70px; height: 600px; animation-delay:   0s; animation-duration: 33s; }
+.smoke--2 { left:  27%; width:  95px; height: 720px; animation-delay: -11s; animation-duration: 29s; }
+.smoke--3 { left:  47%; width:  65px; height: 560px; animation-delay: -21s; animation-duration: 36s; }
+.smoke--4 { left:  64%; width:  85px; height: 650px; animation-delay:  -6s; animation-duration: 31s; }
+.smoke--5 { left:  79%; width:  60px; height: 520px; animation-delay: -17s; animation-duration: 27s; }
+.smoke--6 { left:  37%; width:  80px; height: 680px; animation-delay: -26s; animation-duration: 34s; }
 
 /* Film grain — material depth sutil */
 body::after {
@@ -164,7 +256,7 @@ p { max-width: 65ch; text-wrap: pretty; }
     box-shadow: var(--shadow-glow-primary);
   }
   .btn-outline:hover {
-    background-color: oklch(0.75 0.14 85 / 0.1);
+    background-color: oklch(0.63 0.245 35 /0.1);
     box-shadow: var(--shadow-glow-primary);
   }
   .btn-whatsapp:hover {

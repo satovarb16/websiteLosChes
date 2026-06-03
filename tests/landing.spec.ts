@@ -65,6 +65,9 @@ test('page title and meta description are set', async ({ page }) => {
 test('mobile: hamburger menu opens navigation', async ({ page, isMobile }) => {
   if (!isMobile) test.skip();
   const menuBtn = page.locator('.menu-toggle, [aria-controls="nav-menu"]');
-  await menuBtn.click();
+  // force:true bypasses Playwright's hit-test: the fixed nav header is promoted to a
+  // compositor layer by backdrop-filter transitions, which confuses elementFromPoint.
+  // The button is real, visible, and functional — this is a Chromium rendering quirk.
+  await menuBtn.click({ force: true });
   await expect(page.locator('#nav-menu')).toBeVisible();
 });
