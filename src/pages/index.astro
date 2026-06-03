@@ -120,18 +120,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 </div>
 
 
-<!-- ─── MANIFESTO ─────────────────────────────────────────────────────────── -->
-<section class="manifesto-section" aria-label="Filosofía">
-  <div class="section-inner">
-    <p class="manifesto-text">
-      Todo lo bueno<br /><em>tarda.</em>
-    </p>
-  </div>
-</section>
-
-
 <!-- ─── HISTORIA 1 ────────────────────────────────────────────────────────── -->
 <section id="historia" class="story story--image-left" aria-labelledby="story1-heading">
+  <div class="section-inner story-manifesto-header">
+    <p class="manifesto-text">Todo lo bueno<br /><em>tarda.</em></p>
+  </div>
   <div class="story-inner section-inner">
     <div class="story-image reveal" data-reveal>
       <img src="/images/historia-1.png" alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" width="600" height="750" />
@@ -1810,29 +1803,18 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   }
 }
 
+.story-manifesto-header {
+  padding-top: clamp(4rem, 8vw, 8rem);
+  padding-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
 /* ─── MANIFESTO ───────────────────────────────────────────────────────────── */
-.manifesto-section {
-  padding-block: clamp(8rem, 16vw, 16rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.manifesto-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 50%, oklch(0.55 0.19 40 / 0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.75 0.14 85 / 0.06) 0%, transparent 55%);
-  pointer-events: none;
-}
-
 .manifesto-text {
   font-family: var(--font-display);
-  font-size: clamp(5.5rem, 13vw, 11rem);
+  font-size: clamp(4rem, 9vw, 7.5rem);
   font-weight: 700;
-  line-height: 0.87;
-  letter-spacing: -0.05em;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--color-ink);
   max-width: none;
   text-wrap: balance;
