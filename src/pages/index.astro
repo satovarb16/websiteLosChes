@@ -959,20 +959,12 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 @media (max-width: 768px) {
-  .site-nav,
-  .nav-inner {
-    pointer-events: none;
-  }
-  .nav-logo {
-    pointer-events: auto;
-  }
   .nav-toggle {
     display: flex;
     position: fixed;
     top: var(--space-4);
     right: clamp(1.5rem, 5vw, 5rem);
     z-index: 11;
-    pointer-events: auto;
   }
   .nav-cta { display: none; }
 
