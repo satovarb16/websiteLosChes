@@ -887,7 +887,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   align-items: center;
   gap: var(--space-8);
   padding-block: var(--space-4);
+  pointer-events: none;
 }
+
+.nav-logo,
+.nav-toggle,
+.nav-cta,
+.nav-menu { pointer-events: auto; }
 
 .nav-logo img { height: 48px; width: 48px; }
 
