@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap');
+/* Fonts loaded via <link> in HTML head for non-blocking loading */
 
 /* ─── Tokens ──────────────────────────────────────────────────────────────── */
 :root {
@@ -71,7 +71,8 @@ body {
     radial-gradient(ellipse 25% 100% at 0%  50%,  oklch(0.05 0.005 50 / 0.30) 0%, transparent 68%),
     /* Viñeta lateral derecha */
     radial-gradient(ellipse 25% 100% at 100% 50%, oklch(0.05 0.005 50 / 0.30) 0%, transparent 68%);
-  background-attachment: fixed;
+  /* fixed crea compositing bugs en iOS Safari — solo activar en desktop */
+  background-attachment: scroll;
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -233,6 +234,11 @@ p { max-width: 65ch; text-wrap: pretty; }
 .reveal[data-reveal-delay="2"] { transition-delay: 160ms; }
 .reveal[data-reveal-delay="3"] { transition-delay: 240ms; }
 .reveal[data-reveal-delay="4"] { transition-delay: 320ms; }
+
+/* background-attachment: fixed solo en hover:hover (desktop con mouse) — en touch se rompe en iOS */
+@media (hover: hover) and (pointer: fine) {
+  body { background-attachment: fixed; }
+}
 
 /* ─── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
