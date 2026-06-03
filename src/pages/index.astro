@@ -1046,7 +1046,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   padding-block: clamp(4rem, 8vw, 8rem);
 }
 
-.story--image-right { background-color: oklch(0.17 0.012 50 / 0.55); }
+.story--image-right {
+  background-image: linear-gradient(
+    to bottom,
+    oklch(0.17 0.012 50 / 0) 0%,
+    oklch(0.17 0.012 50 / 0.88) 8%,
+    oklch(0.17 0.012 50 / 0.88) 92%,
+    oklch(0.17 0.012 50 / 0) 100%
+  );
+}
 
 .story-inner {
   display: grid;
@@ -1077,6 +1085,18 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   color: var(--color-ink-muted);
   line-height: 1.75;
   margin-bottom: var(--space-4);
+}
+
+/* Pull-quote: entra desde la izquierda, staggered tras el párrafo */
+.story-text.reveal[data-reveal] .pull-quote {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 550ms 320ms var(--ease-out), transform 550ms 320ms var(--ease-out);
+}
+
+.story-text.reveal[data-reveal].is-visible .pull-quote {
+  opacity: 1;
+  transform: none;
 }
 
 .pull-quote {
@@ -1144,7 +1164,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 /* ─── GALLERY ─────────────────────────────────────────────────────────────── */
 .gallery-section {
   padding-block: clamp(4rem, 8vw, 8rem);
-  background-color: oklch(0.17 0.012 50 / 0.55);
+  background-image: linear-gradient(
+    to bottom,
+    oklch(0.17 0.012 50 / 0) 0%,
+    oklch(0.17 0.012 50 / 0.88) 8%,
+    oklch(0.17 0.012 50 / 0.88) 92%,
+    oklch(0.17 0.012 50 / 0) 100%
+  );
 }
 
 .section-header {
@@ -1453,7 +1479,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 /* ─── LOCATION ────────────────────────────────────────────────────────────── */
 .location-section {
   padding-block: clamp(4rem, 8vw, 8rem);
-  background-color: oklch(0.17 0.012 50 / 0.55);
+  background-image: linear-gradient(
+    to bottom,
+    oklch(0.17 0.012 50 / 0) 0%,
+    oklch(0.17 0.012 50 / 0.88) 8%,
+    oklch(0.17 0.012 50 / 0.88) 92%,
+    oklch(0.17 0.012 50 / 0) 100%
+  );
 }
 
 .location-grid {
@@ -1529,21 +1561,25 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   animation: ember-rise 10s ease-out infinite;
 }
 
-@keyframes ember-rise {
-  0%   { opacity: 0;    transform: translateY(0)      scale(1);   }
-  12%  { opacity: 0.22; }
-  65%  { opacity: 0.10; }
-  100% { opacity: 0;    transform: translateY(-160px) scale(0.4); }
+@media (prefers-reduced-motion: reduce) {
+  .ember { animation: none; opacity: 0; }
 }
 
-.ember--1 { left: 18%; animation-delay: 0s;    width: 2px; height: 2px; }
-.ember--2 { left: 35%; animation-delay: 1.6s;  }
-.ember--3 { left: 52%; animation-delay: 3.2s;  width: 2px; height: 2px; }
-.ember--4 { left: 68%; animation-delay: 0.8s;  }
-.ember--5 { left: 28%; animation-delay: 5.0s;  width: 4px; height: 4px; background: var(--color-primary); box-shadow: 0 0 6px var(--color-primary); }
-.ember--6 { left: 44%; animation-delay: 2.4s;  }
-.ember--7 { left: 78%; animation-delay: 4.1s;  width: 2px; height: 2px; }
-.ember--8 { left: 60%; animation-delay: 6.8s;  }
+@keyframes ember-rise {
+  0%   { opacity: 0;    transform: translateY(0)      translateX(0)    scale(1);    }
+  10%  { opacity: 0.26; }
+  60%  { opacity: 0.12; transform: translateY(-130px)  translateX(7px)  scale(0.65); }
+  100% { opacity: 0;    transform: translateY(-215px)  translateX(16px) scale(0.28); }
+}
+
+.ember--1 { left: 18%; animation-delay: 0s;    width: 2px; height: 2px; animation-duration: 9s; }
+.ember--2 { left: 35%; animation-delay: 1.6s;  animation-duration: 11.5s; }
+.ember--3 { left: 52%; animation-delay: 3.2s;  width: 2px; height: 2px; animation-duration: 8.5s; }
+.ember--4 { left: 68%; animation-delay: 0.8s;  animation-duration: 12s; }
+.ember--5 { left: 28%; animation-delay: 5.0s;  width: 4px; height: 4px; background: var(--color-primary); box-shadow: 0 0 6px var(--color-primary); animation-duration: 14s; }
+.ember--6 { left: 44%; animation-delay: 2.4s;  animation-duration: 10.5s; }
+.ember--7 { left: 78%; animation-delay: 4.1s;  width: 2px; height: 2px; animation-duration: 7.5s; }
+.ember--8 { left: 60%; animation-delay: 6.8s;  animation-duration: 13s; }
 
 /* ─── RESERVATIONS ────────────────────────────────────────────────────────── */
 .reservations-section {
@@ -1565,19 +1601,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 .reservations-section::after {
-  content: 'RESERVA';
-  position: absolute;
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 14vw, 12rem);
-  font-weight: 700;
-  color: oklch(0.75 0.14 85 / 0.07);
-  letter-spacing: -0.03em;
-  bottom: -0.1em;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
+  content: none;
 }
 
 .reservations-content {
@@ -1598,6 +1622,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   line-height: 1.7;
   margin-inline: auto;
   margin-bottom: var(--space-8);
+}
+
+/* WhatsApp CTA: pulso suave en idle para invitar al click */
+@media (prefers-reduced-motion: no-preference) {
+  .reservations-content .btn-whatsapp {
+    animation: whatsapp-pulse 3.8s ease-in-out infinite;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reservations-content .btn-whatsapp:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.60 0.18 150 / 0); }
+  50%       { box-shadow: 0 0 16px 4px oklch(0.60 0.18 150 / 0.30), 0 0 36px 8px oklch(0.55 0.19 40 / 0.14); }
 }
 
 /* ─── FOOTER ──────────────────────────────────────────────────────────────── */
@@ -1838,6 +1880,23 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .manifesto-text em {
   font-style: italic;
   color: var(--color-secondary);
+  display: inline-block;
+}
+
+/* La palabra clave entra desde la derecha, con su propio ritmo */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .manifesto-text em {
+      animation: manifesto-em linear both;
+      animation-timeline: view();
+      animation-range: entry 22% entry 68%;
+    }
+  }
+}
+
+@keyframes manifesto-em {
+  from { opacity: 0.05; transform: translateX(20px); }
+  to   { opacity: 1;    transform: none; }
 }
 
 /* ─── PHILOSOPHY PILLARS ──────────────────────────────────────────────────── */
@@ -2176,6 +2235,22 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .gallery-item[data-reveal-delay="3"] .gallery-img-wrap { transition-delay: 180ms; }
 
 
+/* Hero image zoom — profundidad de scroll, efecto cinematográfico */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero-img {
+      animation: hero-zoom linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0vh 70vh;
+    }
+  }
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
 /* Ken Burns on the fire image */
 @media (prefers-reduced-motion: no-preference) {
   .gallery-item--6 .gallery-img {
@@ -2204,7 +2279,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 7vw, 6rem);
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   line-height: 0.85;
   color: oklch(0.75 0.14 85 / 0.12);
   margin-bottom: var(--space-4);
