@@ -887,13 +887,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   align-items: center;
   gap: var(--space-8);
   padding-block: var(--space-4);
-  pointer-events: none;
 }
-
-.nav-logo,
-.nav-toggle,
-.nav-cta,
-.nav-menu { pointer-events: auto; }
 
 .nav-logo img { height: 48px; width: 48px; }
 
@@ -965,7 +959,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; position: relative; z-index: 1; }
+  .nav-toggle {
+    display: flex;
+    position: fixed;
+    top: var(--space-4);
+    right: clamp(1.5rem, 5vw, 5rem);
+    z-index: 11;
+  }
   .nav-cta { display: none; }
 
   .nav-menu {
