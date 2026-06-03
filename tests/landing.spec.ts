@@ -34,10 +34,10 @@ test('WhatsApp CTA links are present and valid', async ({ page }) => {
   }
 });
 
-test('gallery renders all 6 images', async ({ page }) => {
+test('gallery renders all 5 images', async ({ page }) => {
   const items = page.locator('.gallery-item');
-  await expect(items).toHaveCount(6);
-  for (let i = 0; i < 6; i++) {
+  await expect(items).toHaveCount(5);
+  for (let i = 0; i < 5; i++) {
     await expect(items.nth(i).locator('img')).toBeVisible();
   }
 });

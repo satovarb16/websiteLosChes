@@ -170,23 +170,50 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 </section>
 
 
-<!-- ─── PHILOSOPHY PILLARS ───────────────────────────────────────────────── -->
-<section class="pillars-section" aria-label="Por qué Los Ches">
+<!-- ─── DONENESS SECTION ───────────────────────────────────────────────────── -->
+<section class="doneness-section" aria-labelledby="doneness-heading">
   <div class="section-inner">
-    <dl class="pillars-list">
-      <div class="pillar reveal" data-reveal>
-        <dt class="pillar-name">El fuego.</dt>
-        <dd class="pillar-desc">El kamado envuelve al corte por todos lados: calor indirecto, humedad controlada, ahumado natural. Así trabaja el primer huarique parrillero de Lima.</dd>
+    <div class="doneness-layout">
+
+      <div class="doneness-left">
+        <h2 id="doneness-heading" class="doneness-heading">El punto perfecto.</h2>
+        <div class="doneness-image-panel" aria-hidden="true">
+        <!-- TODO: replace with real doneness-level photography -->
+        <img class="doneness-img" data-index="0" alt="Punto de cocción: Rojo / Sellado" />
+        <img class="doneness-img" data-index="1" alt="Punto de cocción: Término Medio" />
+        <img class="doneness-img" data-index="2" alt="Punto de cocción: Tres Cuartos" />
+        <img class="doneness-img" data-index="3" alt="Punto de cocción: Bien Cocido" />
       </div>
-      <div class="pillar reveal" data-reveal data-reveal-delay="1">
-        <dt class="pillar-name">El corte.</dt>
-        <dd class="pillar-desc">Angus importado de Argentina y Estados Unidos, seleccionado a mano. Cada pieza llega fresca y sale al kamado el mismo día.</dd>
       </div>
-      <div class="pillar reveal" data-reveal data-reveal-delay="2">
-        <dt class="pillar-name">El tiempo.</dt>
-        <dd class="pillar-desc">Una picaña a 120° necesita tres horas de cocción lenta. Ese tiempo es el ingrediente que ningún atajo puede reemplazar.</dd>
-      </div>
-    </dl>
+
+      <ol class="doneness-items" aria-label="Puntos de cocción">
+        <li class="doneness-item" data-index="0">
+          <span class="doneness-num">01</span>
+          <h3 class="doneness-title">Rojo / Sellado</h3>
+          <p class="doneness-meta">2 min por lado · 50°C–52°C</p>
+          <p class="doneness-desc">Rojo intenso por dentro, el sabor más puro.</p>
+        </li>
+        <li class="doneness-item" data-index="1">
+          <span class="doneness-num">02</span>
+          <h3 class="doneness-title">Término Medio</h3>
+          <p class="doneness-meta">3–4 min por lado · 55°C–60°C</p>
+          <p class="doneness-desc">Equilibrio perfecto entre jugosidad y sabor.</p>
+        </li>
+        <li class="doneness-item" data-index="2">
+          <span class="doneness-num">03</span>
+          <h3 class="doneness-title">Tres Cuartos</h3>
+          <p class="doneness-meta">4–5 min por lado · 60°C–65°C</p>
+          <p class="doneness-desc">Más cocido, pero aún jugoso y lleno de sabor.</p>
+        </li>
+        <li class="doneness-item" data-index="3">
+          <span class="doneness-num">04</span>
+          <h3 class="doneness-title">Bien Cocido</h3>
+          <p class="doneness-meta">6 min por lado · 70°C+</p>
+          <p class="doneness-desc">Totalmente cocido, sin jugos visibles.</p>
+        </li>
+      </ol>
+
+    </div>
   </div>
 </section>
 
@@ -233,13 +260,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
           <Image src="/images/gallery-burger.png" alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <p class="gallery-caption">Che Burger</p>
-        </div>
-      </div>
-      <div class="gallery-item reveal gallery-item--6" data-reveal data-reveal-delay="1" role="listitem">
-        <div class="gallery-img-wrap">
-          <Image src="/images/gallery-fire.jpg" alt="Brasas vivas — el fuego que da vida a cada corte" loading="lazy" class="gallery-img" width={800} height={600} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Brasas vivas</p>
         </div>
       </div>
     </div>
@@ -1876,56 +1896,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   to   { opacity: 1;    transform: none; }
 }
 
-/* ─── PHILOSOPHY PILLARS ──────────────────────────────────────────────────── */
-.pillars-section {
-  padding-block: clamp(4rem, 8vw, 8rem);
-  background-image:
-    radial-gradient(ellipse 70% 60% at 15% 50%, oklch(0.55 0.19 40 / 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 50%, oklch(0.75 0.14 85 / 0.05) 0%, transparent 55%);
-}
-
-.pillars-list {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.pillar {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: baseline;
-  padding-block: clamp(2.5rem, 4.5vw, 4.5rem);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.pillar:first-child { border-top: 1px solid var(--color-border); }
-
-.pillar-name {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  color: var(--color-primary);
-  letter-spacing: -0.02em;
-  line-height: 1.0;
-  margin: 0;
-}
-
-.pillar-desc {
-  font-size: 1rem;
-  color: var(--color-ink-muted);
-  line-height: 1.75;
-  max-width: 52ch;
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .pillar {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-}
+/* ─── PHILOSOPHY PILLARS — removed; replaced by doneness section ─────────── */
 
 /* ─── NAV INNER SHADOW (glass edge refraction) ────────────────────────────── */
 .site-nav.is-scrolled {
@@ -2044,7 +2015,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   display: block;
   grid-template-columns: unset;
   padding-block: 0 clamp(4.5rem, 8vw, 8rem);
-  padding-top: clamp(14rem, 22vw, 20rem);
+  padding-top: clamp(5rem, 8vw, 8rem);
   z-index: 3;
 }
 
@@ -2246,93 +2217,160 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   }
 }
 
-/* ─── PILLARS: index counter + left accent + hover sweep ─────────────────── */
-.pillars-list { counter-reset: pillar; }
-.pillar { counter-increment: pillar; }
+/* ─── DONENESS SECTION ──────────────────────────────────────────────────────── */
+.doneness-section { padding-block: clamp(4rem, 8vw, 8rem); }
 
-.pillar-name::before {
-  content: counter(pillar, decimal-leading-zero);
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7vw, 6rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.85;
-  color: oklch(0.75 0.14 85 / 0.12);
-  margin-bottom: var(--space-4);
-  font-style: normal;
-  transition: color 200ms var(--ease-out);
+.doneness-heading {
+  font-size: clamp(2.75rem, 5.5vw, 5rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(2rem, 4vw, 4rem);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .pillar:hover .pillar-name::before { color: var(--color-primary); }
+.doneness-layout {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
 }
 
-/* Left accent bar */
-.pillar {
-  overflow: visible;
+.doneness-left {
+  position: sticky;
+  top: calc(80px + var(--space-8));
+}
+
+.doneness-image-panel {
   position: relative;
+  aspect-ratio: 3/4;
+  transition: transform 700ms var(--ease-out);
 }
 
-.pillar::before {
+.doneness-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out), transform 400ms var(--ease-out);
+}
+
+.doneness-img.is-active {
+  opacity: 1;
+  animation: meat-float 4s ease-in-out infinite;
+  will-change: transform;
+  filter: drop-shadow(0 40px 60px oklch(0 0 0 / 0.55));
+}
+
+@keyframes meat-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doneness-img { transition: none; animation: none; }
+}
+
+.doneness-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.doneness-item {
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--color-border);
+  opacity: 0.35;
+  transition: opacity 300ms var(--ease-out);
+  position: relative;
+  cursor: default;
+}
+
+.doneness-item:first-child { border-top: 1px solid var(--color-border); }
+
+.doneness-item.is-active { opacity: 1; }
+
+.doneness-item::before {
   content: '';
   position: absolute;
   left: -2px;
-  top: 20px;
-  bottom: 20px;
+  top: 24px;
+  bottom: 24px;
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--color-primary) 30%, var(--color-primary) 70%, transparent);
   transform: scaleY(0);
   transform-origin: top center;
   transition: transform 220ms var(--ease-out);
-  pointer-events: none;
   border-radius: 1px;
 }
 
-.pillar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, oklch(0.75 0.14 85 / 0.04) 0%, transparent 45%);
-  opacity: 0;
-  transition: opacity 220ms var(--ease-out);
-  pointer-events: none;
+.doneness-item.is-active::before { transform: scaleY(1); }
+
+.doneness-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: oklch(0.75 0.14 85 / 0.12);
+  margin-bottom: var(--space-3);
+  transition: color 200ms var(--ease-out);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .pillar:hover::before { transform: scaleY(1); }
-  .pillar:hover::after  { opacity: 1; }
+.doneness-item.is-active .doneness-num { color: var(--color-primary); }
+
+.doneness-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
 }
 
-/* Independent axis reveal: name from left, desc from right-ish */
-.pillar.reveal[data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition: none;
+.doneness-meta {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+  opacity: 0.7;
 }
 
-.pillar.reveal[data-reveal] .pillar-name {
-  opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+.doneness-item.is-active .doneness-meta { opacity: 1; }
+
+.doneness-desc {
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+  line-height: 1.7;
+  max-width: 42ch;
 }
 
-.pillar.reveal[data-reveal] .pillar-desc {
-  opacity: 0;
-  transform: translateX(12px);
-  transition: opacity 450ms 120ms var(--ease-out), transform 450ms 120ms var(--ease-out);
-}
+@media (max-width: 768px) {
+  .doneness-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
 
-.pillar.reveal[data-reveal].is-visible .pillar-name,
-.pillar.reveal[data-reveal].is-visible .pillar-desc {
-  opacity: 1;
-  transform: none;
-}
+  .doneness-left {
+    position: relative;
+    top: auto;
+  }
 
-.pillar.reveal[data-reveal-delay="1"] .pillar-name { transition-delay: 80ms; }
-.pillar.reveal[data-reveal-delay="1"] .pillar-desc  { transition-delay: 210ms; }
-.pillar.reveal[data-reveal-delay="2"] .pillar-name  { transition-delay: 160ms; }
-.pillar.reveal[data-reveal-delay="2"] .pillar-desc  { transition-delay: 290ms; }
+  .doneness-image-panel {
+    height: 260px;
+    aspect-ratio: unset;
+  }
+
+  .doneness-item { opacity: 1; }
+  .doneness-item:not(.is-active) { opacity: 0.6; }
+}
 </style>
 
 
@@ -2442,6 +2480,53 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 revealEls.forEach(el => revealObserver.observe(el));
+
+/* ─── Doneness scroll sync ──────────────────────────────────────────────── */
+const DONENESS_IMAGES = [
+  '/images/rare.png',
+  '/images/medium_rare.png',
+  '/images/medium.png',
+  '/images/well_done.png',
+];
+
+const donenessImgEls = document.querySelectorAll('.doneness-img');
+donenessImgEls.forEach((img, i) => {
+  img.src = DONENESS_IMAGES[i] || DONENESS_IMAGES[0];
+});
+
+const donenessItems = document.querySelectorAll('.doneness-item');
+const donenessImgs  = document.querySelectorAll('.doneness-img');
+
+const donenessPanel = document.querySelector('.doneness-image-panel');
+
+function setDoneness(index) {
+  donenessItems.forEach((item, i) => {
+    const active = i === index;
+    item.classList.toggle('is-active', active);
+    item.setAttribute('aria-current', active ? 'true' : 'false');
+  });
+  donenessImgs.forEach((img, i) => {
+    img.classList.toggle('is-active', i === index);
+  });
+  if (donenessPanel) {
+    donenessPanel.style.transform = `translateY(${index * 36}px)`;
+  }
+}
+
+if (donenessItems.length) {
+  setDoneness(0);
+
+  const donenessObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.dataset.index, 10);
+        setDoneness(index);
+      }
+    }
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+  donenessItems.forEach(item => donenessObserver.observe(item));
+}
 
 /* ─── Stat counter animation ─────────────────────────────────────────────── */
 const countEls = document.querySelectorAll('[data-count-to]');
