@@ -106,6 +106,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       </div>
     </div>
   </div>
+
+  <div class="hero-scroll-cue" aria-hidden="true"><span></span></div>
 </section>
 
 
@@ -739,16 +741,16 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div class="hours-schedule">
               <dl class="hours-list">
-                <div class="hours-row"><dt>Miércoles</dt><dd>12:30–9 p.m.</dd></div>
-                <div class="hours-row"><dt>Jueves</dt><dd>12:30–9 p.m.</dd></div>
-                <div class="hours-row"><dt>Viernes</dt><dd>12:30–10 p.m.</dd></div>
-                <div class="hours-row"><dt>Sábado</dt><dd>12:30–10 p.m.</dd></div>
-                <div class="hours-row">
+                <div class="hours-row" data-day="3"><dt>Miércoles</dt><dd>12:30–9 p.m.</dd></div>
+                <div class="hours-row" data-day="4"><dt>Jueves</dt><dd>12:30–9 p.m.</dd></div>
+                <div class="hours-row" data-day="5"><dt>Viernes</dt><dd>12:30–10 p.m.</dd></div>
+                <div class="hours-row" data-day="6"><dt>Sábado</dt><dd>12:30–10 p.m.</dd></div>
+                <div class="hours-row" data-day="0">
                   <dt>Domingo</dt>
                   <dd>12:30–5 p.m.</dd>
                 </div>
-                <div class="hours-row hours-row--closed"><dt>Lunes</dt><dd>Cerrado</dd></div>
-                <div class="hours-row"><dt>Martes</dt><dd>12:30–9 p.m.</dd></div>
+                <div class="hours-row hours-row--closed" data-day="1"><dt>Lunes</dt><dd>Cerrado</dd></div>
+                <div class="hours-row" data-day="2"><dt>Martes</dt><dd>12:30–9 p.m.</dd></div>
               </dl>
             </div>
           </li>
@@ -791,7 +793,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   </div>
   <div class="section-inner">
     <div class="reservations-content reveal" data-reveal>
-      <h2 id="reservations-heading">Reserva tu mesa.</h2>
+      <h2 id="reservations-heading">Reserva <em>tu mesa.</em></h2>
       <p>
         Solo faltas tú y tus amigos. Escríbenos por WhatsApp, elige el día y el horario, y en minutos tienes tu mesa lista.
       </p>
@@ -857,6 +859,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       </div>
     </div>
 
+    <p class="footer-wordmark" aria-hidden="true">Los Ches</p>
+
     <div class="footer-bottom">
       <p>&copy; 2025 Los Ches Grill &amp; Meals. Todos los derechos reservados.</p>
       <div class="footer-legal">
@@ -914,8 +918,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 .nav-link {
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-ink-muted);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-out);
@@ -972,6 +978,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 @media (max-width: 768px) {
+  /* backdrop-filter would make the fixed bar the containing block for the
+     fixed drawer below, collapsing it to the bar's height — solid bar instead */
+  .site-nav.is-scrolled {
+    background-color: oklch(0.12 0.01 50 / 0.98);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .nav-toggle {
     display: flex;
     position: fixed;
@@ -1001,7 +1015,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     gap: var(--space-6);
   }
 
-  .nav-link { font-size: 1.25rem; }
+  /* Fullscreen menu: big serif entries — the drawer becomes a menu card */
+  .nav-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    line-height: 1.2;
+  }
 }
 
 
@@ -1036,6 +1058,9 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 .hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
@@ -1043,6 +1068,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: var(--space-4);
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-primary), oklch(0.63 0.245 35 / 0.25));
+  flex-shrink: 0;
 }
 
 .hero-heading {
@@ -1101,6 +1134,41 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
   .hero-image { order: -1; }
 
+}
+
+/* ─── HERO SCROLL CUE ─────────────────────────────────────────────────────── */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 1px;
+  height: 56px;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.hero-scroll-cue span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--color-ink) 40%, transparent);
+  animation: scroll-cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-cue {
+  0%   { transform: translateY(-100%); }
+  55%  { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue { display: none; }
+}
+
+@media (max-height: 600px) {
+  .hero-scroll-cue { display: none; }
 }
 
 /* ─── STORY ───────────────────────────────────────────────────────────────── */
@@ -1182,6 +1250,22 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   display: block;
 }
 
+/* 1px edge highlight — simulates light catching the print's edge */
+.story-image {
+  position: relative;
+}
+
+.story-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    inset 0 0 0 1px oklch(1 0 0 / 0.04);
+  pointer-events: none;
+}
+
 /* Story images — fade + ligero scale-up para sensación cinematográfica */
 .story-image[data-reveal] {
   opacity: 0;
@@ -1242,7 +1326,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .gallery-item--3 { grid-column: 3; grid-row: 1; }
 .gallery-item--4 { grid-column: 1; grid-row: 2; }
 .gallery-item--5 { grid-column: 3; grid-row: 2; }
-.gallery-item--6 { grid-column: 1 / 4; grid-row: 3; }
 
 .gallery-img-wrap {
   width: 100%;
@@ -1257,7 +1340,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .gallery-item--2 .gallery-img-wrap { min-height: 460px; }
 .gallery-item--2 .gallery-img-wrap { background-color: oklch(0.11 0.01 45); }
 .gallery-item--2 .gallery-img { object-fit: cover; object-position: 25% center; }
-.gallery-item--6 .gallery-img-wrap { min-height: 200px; }
 
 .gallery-img {
   width: 100%;
@@ -1273,6 +1355,17 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   background: linear-gradient(to top, oklch(0 0 0 / 0.5), transparent 60%);
   opacity: 0;
   transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.gallery-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    inset 0 0 0 1px oklch(1 0 0 / 0.04);
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1296,14 +1389,12 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   .gallery-item--2,
   .gallery-item--3,
   .gallery-item--4,
-  .gallery-item--5,
-  .gallery-item--6 {
+  .gallery-item--5 {
     grid-column: auto;
     grid-row: auto;
   }
 
   .gallery-item--2 .gallery-img-wrap { min-height: 220px; }
-  .gallery-item--6 .gallery-img-wrap { min-height: 180px; aspect-ratio: 1; }
 }
 
 /* ─── MENU ────────────────────────────────────────────────────────────────── */
@@ -1344,8 +1435,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   border-bottom: 2px solid transparent;
   padding: var(--space-3) var(--space-4);
   margin-bottom: -1px;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--color-ink-muted);
   cursor: pointer;
   transition: color var(--duration-base) var(--ease-out),
@@ -1409,7 +1502,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: var(--space-8);
+  gap: var(--space-3);
   padding-block: var(--space-5);
   border-bottom: 1px solid var(--color-border);
   position: relative;
@@ -1436,12 +1529,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .menu-item-info { flex: 1; }
 
 .menu-item-info h3 {
+  display: flex;
+  align-items: baseline;
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: var(--space-1);
   letter-spacing: 0;
   line-height: 1.3;
+}
+
+/* Dot leader — classic menu typography connecting dish to price */
+.menu-item-info h3::after {
+  content: '';
+  flex: 1;
+  min-width: var(--space-4);
+  margin-inline-start: 0.6em;
+  border-bottom: 1px dotted oklch(0.45 0.03 50 / 0.7);
+  transform: translateY(-0.3em);
 }
 
 .menu-item-info p {
@@ -1453,9 +1558,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .menu-price {
   font-family: var(--font-display);
   font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-weight: 400;
+  color: var(--color-ink);
   white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-item:hover .menu-price { color: var(--color-primary); }
 }
 
 .menu-price--consult {
@@ -1519,6 +1629,22 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 .menu-list--compact .menu-item {
   padding-block: var(--space-3);
+}
+
+.menu-list--compact .menu-item > span:first-child {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  font-size: 0.9375rem;
+}
+
+.menu-list--compact .menu-item > span:first-child::after {
+  content: '';
+  flex: 1;
+  min-width: var(--space-4);
+  margin-inline-start: 0.6em;
+  border-bottom: 1px dotted oklch(0.45 0.03 50 / 0.7);
+  transform: translateY(-0.3em);
 }
 
 .bebidas-grid {
@@ -1617,6 +1743,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   opacity: 0.5;
 }
 
+/* Today's row glows like an ember */
+.hours-row.is-today dt,
+.hours-row.is-today dd {
+  color: var(--color-ink);
+  font-weight: 600;
+  opacity: 1;
+}
+
+.hours-row.is-today dt::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 8px oklch(0.63 0.245 35 / 0.7);
+  flex-shrink: 0;
+}
+
 
 .location-details a {
   color: var(--color-ink-muted);
@@ -1628,13 +1772,19 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   .location-details a:hover { color: var(--color-primary); }
 }
 
+.location-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.05), 0 12px 40px oklch(0 0 0 / 0.35);
+}
+
+/* Invert flips the light Google embed into the site's dark palette */
 .location-map-iframe {
   aspect-ratio: 4/3;
   width: 100%;
   display: block;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  filter: grayscale(0.2) contrast(1.05);
+  filter: invert(0.89) hue-rotate(180deg) saturate(0.4) contrast(0.92) brightness(0.95);
 }
 
 @media (max-width: 768px) {
@@ -1684,7 +1834,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 /* ─── SECTION DIVIDER ────────────────────────────────────────────────────── */
 .section-divider {
   border: none;
-  border-top: 1px solid var(--color-border);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border) 18%, var(--color-border) 82%, transparent);
   margin: 0;
 }
 
@@ -1806,6 +1957,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 .footer-contact svg { flex-shrink: 0; opacity: 0.6; }
+
+/* Giant serif signature — brand presence as a closing gesture */
+.footer-wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(4rem, 15vw, 13rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: oklch(0.88 0.018 80 / 0.05);
+  max-width: none;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: calc(var(--space-8) * -0.5);
+  text-wrap: nowrap;
+  overflow: hidden;
+}
 
 .footer-bottom {
   display: flex;
@@ -2223,6 +2392,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   margin-bottom: var(--space-6);
 }
 
+.reservations-content h2 em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    SECTION UPGRADES — personality & motion
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -2310,24 +2484,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 @keyframes hero-zoom {
   from { transform: scale(1); }
   to   { transform: scale(1.06); }
-}
-
-/* Ken Burns on the fire image */
-@media (prefers-reduced-motion: no-preference) {
-  .gallery-item--6 .gallery-img {
-    animation: ken-burns 18s ease-in-out infinite alternate;
-  }
-}
-
-@keyframes ken-burns {
-  0%   { transform: scale(1) translateX(0); }
-  100% { transform: scale(1.07) translateX(-1.5%); }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .gallery-item--6 .gallery-img-wrap:hover .gallery-img {
-    animation-play-state: paused;
-  }
 }
 
 /* ─── DONENESS SECTION ──────────────────────────────────────────────────────── */
@@ -2637,6 +2793,10 @@ if (donenessItems.length) {
 
   donenessItems.forEach(item => donenessObserver.observe(item));
 }
+
+/* ─── Highlight today's opening hours ────────────────────────────────────── */
+const todayRow = document.querySelector(`.hours-row[data-day="${new Date().getDay()}"]`);
+todayRow?.classList.add('is-today');
 
 /* ─── Stat counter animation ─────────────────────────────────────────────── */
 const countEls = document.querySelectorAll('[data-count-to]');
