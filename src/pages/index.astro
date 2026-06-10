@@ -43,6 +43,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 <a href="#main-content" class="skip-link">Ir al contenido principal</a>
 
+<div class="scroll-progress" aria-hidden="true"></div>
+
 <!-- ─── NAV ──────────────────────────────────────────────────────────────── -->
 <header class="site-nav" id="site-nav">
   <div class="nav-inner section-inner">
@@ -93,7 +95,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     <div class="hero-text">
       <p class="hero-eyebrow">El 1er huarique parrillero de Lima</p>
       <h1 id="hero-heading" class="hero-heading">
-        Al fuego.<br /><em>Sin apuros.</em>
+        <span class="line"><span class="line-inner">Al fuego.</span></span>
+        <span class="line"><span class="line-inner"><em>Sin apuros.</em></span></span>
       </h1>
       <p class="hero-body">
         Carnes Angus de Argentina y Estados Unidos al kamado, parrillas para compartir y el primer huarique parrillero que Lima tenía pendiente.
@@ -190,10 +193,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 <!-- ─── DONENESS SECTION ───────────────────────────────────────────────────── -->
 <section class="doneness-section" aria-labelledby="doneness-heading">
   <div class="section-inner">
-    <h2 id="doneness-heading" class="doneness-heading">El punto perfecto.</h2>
     <div class="doneness-layout">
 
       <div class="doneness-left">
+        <h2 id="doneness-heading" class="doneness-heading">El punto perfecto.</h2>
         <div class="doneness-image-panel" aria-hidden="true">
         <!-- TODO: replace with real doneness-level photography -->
         <Image class="doneness-img" data-index="0" src="/images/rare.png"        alt="Punto de cocción: Rojo / Sellado"  width={400} height={533} loading="lazy" />
@@ -235,6 +238,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 </section>
 
 
+<!-- ─── MARQUEE ───────────────────────────────────────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-seq">Al fuego <em>✦</em> Sin apuros <em>✦</em> Angus al kamado <em>✦</em> Para compartir <em>✦</em>&nbsp;</span>
+    <span class="marquee-seq">Al fuego <em>✦</em> Sin apuros <em>✦</em> Angus al kamado <em>✦</em> Para compartir <em>✦</em>&nbsp;</span>
+  </div>
+</div>
+
+
 <!-- ─── GALERÍA ───────────────────────────────────────────────────────────── -->
 <section id="galeria" class="gallery-section" aria-labelledby="gallery-heading">
   <div class="section-inner">
@@ -244,40 +256,39 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     </div>
     <div class="gallery-grid" role="list">
       <div class="gallery-item reveal gallery-item--1" data-reveal data-reveal-delay="1" role="listitem">
-        <div class="gallery-img-wrap">
-
+        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Mesa compartida">
           <Image src="/images/historia-2.png" alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Mesa compartida</p>
-        </div>
+          <span class="gallery-caption">Mesa compartida</span>
+        </button>
       </div>
       <div class="gallery-item reveal gallery-item--2" data-reveal data-reveal-delay="2" role="listitem">
-        <div class="gallery-img-wrap">
+        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Tomahawk">
           <Image src="/images/gallery-tomahawk.png" alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Tomahawk</p>
-        </div>
+          <span class="gallery-caption">Tomahawk</span>
+        </button>
       </div>
       <div class="gallery-item reveal gallery-item--3" data-reveal data-reveal-delay="1" role="listitem">
-        <div class="gallery-img-wrap">
+        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Bife Ancho Angus">
           <Image src="/images/gallery-angus.png" alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Bife Ancho Angus</p>
-        </div>
+          <span class="gallery-caption">Bife Ancho Angus</span>
+        </button>
       </div>
       <div class="gallery-item reveal gallery-item--4" data-reveal data-reveal-delay="2" role="listitem">
-        <div class="gallery-img-wrap">
+        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Lomo Saltado">
           <Image src="/images/gallery-lomo.png" alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Lomo Saltado</p>
-        </div>
+          <span class="gallery-caption">Lomo Saltado</span>
+        </button>
       </div>
       <div class="gallery-item reveal gallery-item--5" data-reveal data-reveal-delay="3" role="listitem">
-        <div class="gallery-img-wrap">
+        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Che Burger">
           <Image src="/images/gallery-burger.png" alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" width={800} height={600} />
           <div class="gallery-overlay" aria-hidden="true"></div>
-          <p class="gallery-caption">Che Burger</p>
-        </div>
+          <span class="gallery-caption">Che Burger</span>
+        </button>
       </div>
     </div>
   </div>
@@ -314,6 +325,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       ))}
       <span class="tab-indicator" aria-hidden="true"></span>
     </div>
+
+    <div class="tab-panels">
 
     <!-- PIQUEOS -->
     <div class="tab-panel" id="panel-piqueos" role="tabpanel" aria-labelledby="tab-piqueos">
@@ -523,99 +536,105 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
     <!-- PLATOS -->
     <div class="tab-panel is-hidden" id="panel-platos" role="tabpanel" aria-labelledby="tab-platos">
-      <div class="menu-subsection menu-subsection--first">
-        <h3 class="menu-subsection-title">Saltados al Wok</h3>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Lomo Saltado</h3>
-              <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, con papas fritas y arroz blanco</p>
-            </div>
-            <span class="menu-price">S/ 56</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Lomo Saltado Especial</h3>
-              <p>Lomo fino (150 g) salteado con cebollas, tomates, ajíes y champiñones (200 g), con papas fritas y arroz blanco</p>
-            </div>
-            <span class="menu-price">S/ 82</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Lomo al Jugo</h3>
-              <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, montado con huevo frito en pan ciabatta tostado</p>
-            </div>
-            <span class="menu-price">S/ 56</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Tallarín Saltado</h3>
-              <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, servido con tallarines</p>
-            </div>
-            <span class="menu-price">S/ 56</span>
-          </li>
-        </ul>
-      </div>
+      <div class="platos-grid">
+        <div class="platos-main">
+          <div class="menu-subsection menu-subsection--first">
+            <h3 class="menu-subsection-title">Saltados al Wok</h3>
+            <ul class="menu-list">
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Lomo Saltado</h3>
+                  <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, con papas fritas y arroz blanco</p>
+                </div>
+                <span class="menu-price">S/ 56</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Lomo Saltado Especial</h3>
+                  <p>Lomo fino (150 g) salteado con cebollas, tomates, ajíes y champiñones (200 g), con papas fritas y arroz blanco</p>
+                </div>
+                <span class="menu-price">S/ 82</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Lomo al Jugo</h3>
+                  <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, montado con huevo frito en pan ciabatta tostado</p>
+                </div>
+                <span class="menu-price">S/ 56</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Tallarín Saltado</h3>
+                  <p>Lomo fino (150 g) salteado con cebollas, tomates y ajíes, servido con tallarines</p>
+                </div>
+                <span class="menu-price">S/ 56</span>
+              </li>
+            </ul>
+          </div>
 
-      <div class="menu-subsection">
-        <h3 class="menu-subsection-title">Sangu-Ches</h3>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Che Burger</h3>
-              <p>Hamburguesa Angus (200 g), doble queso, tocino, cebolla caramelizada, champiñones, tomate y lechuga en pan Bun, con papas fritas</p>
-            </div>
-            <span class="menu-price">S/ 48</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Chanchito Asado</h3>
-              <p>Media baguette con 200 g de chancho asado con toque oriental, cubierto de nabo encurtido</p>
-            </div>
-            <span class="menu-price">S/ 35</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Chanchito Ahumado</h3>
-              <p>Media baguette con 200 g de chancho ahumado, cubierta con cebolla caramelizada o sarcita criolla</p>
-            </div>
-            <span class="menu-price">S/ 35</span>
-          </li>
-        </ul>
-      </div>
+          <div class="menu-subsection">
+            <h3 class="menu-subsection-title">Sangu-Ches</h3>
+            <ul class="menu-list">
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Che Burger</h3>
+                  <p>Hamburguesa Angus (200 g), doble queso, tocino, cebolla caramelizada, champiñones, tomate y lechuga en pan Bun, con papas fritas</p>
+                </div>
+                <span class="menu-price">S/ 48</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Chanchito Asado</h3>
+                  <p>Media baguette con 200 g de chancho asado con toque oriental, cubierto de nabo encurtido</p>
+                </div>
+                <span class="menu-price">S/ 35</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Chanchito Ahumado</h3>
+                  <p>Media baguette con 200 g de chancho ahumado, cubierta con cebolla caramelizada o sarcita criolla</p>
+                </div>
+                <span class="menu-price">S/ 35</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-      <div class="menu-subsection">
-        <h3 class="menu-subsection-title">Guarniciones</h3>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Ensalada Los Ches</h3>
-              <p>Lechuga, tomates, cebolla, champiñones y palta con aliño de la casa</p>
-            </div>
-            <span class="menu-price">S/ 28</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Ensalada Parrillera</h3>
-              <p>Lechuga, tomates, cebolla y palta con aliño de la casa</p>
-            </div>
-            <span class="menu-price">S/ 18</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Papas Fritas</h3>
-              <p>Bastones de papas</p>
-            </div>
-            <span class="menu-price">S/ 18</span>
-          </li>
-          <li class="menu-item">
-            <div class="menu-item-info">
-              <h3>Arroz Blanco</h3>
-              <p>Porción de arroz cocido a nuestro estilo</p>
-            </div>
-            <span class="menu-price">S/ 8</span>
-          </li>
-        </ul>
+        <div class="platos-side">
+          <div class="menu-subsection menu-subsection--first">
+            <h3 class="menu-subsection-title">Guarniciones</h3>
+            <ul class="menu-list">
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Ensalada Los Ches</h3>
+                  <p>Lechuga, tomates, cebolla, champiñones y palta con aliño de la casa</p>
+                </div>
+                <span class="menu-price">S/ 28</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Ensalada Parrillera</h3>
+                  <p>Lechuga, tomates, cebolla y palta con aliño de la casa</p>
+                </div>
+                <span class="menu-price">S/ 18</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Papas Fritas</h3>
+                  <p>Bastones de papas</p>
+                </div>
+                <span class="menu-price">S/ 18</span>
+              </li>
+              <li class="menu-item">
+                <div class="menu-item-info">
+                  <h3>Arroz Blanco</h3>
+                  <p>Porción de arroz cocido a nuestro estilo</p>
+                </div>
+                <span class="menu-price">S/ 8</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -722,6 +741,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
         </div>
       </div>
     </div>
+    </div><!-- /.tab-panels -->
   </div>
 </section>
 
@@ -871,6 +891,17 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     </div>
   </div>
 </footer>
+
+<!-- Gallery lightbox -->
+<dialog class="lightbox" id="lightbox" aria-label="Vista ampliada de la galería">
+  <button class="lightbox-close" type="button" aria-label="Cerrar vista ampliada">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <figure class="lightbox-figure">
+    <img class="lightbox-img" src="" alt="" />
+    <figcaption class="lightbox-caption"></figcaption>
+  </figure>
+</dialog>
 
 <!-- WhatsApp FAB (mobile) -->
 <a href={whatsappUrl} class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Reservar por WhatsApp">
@@ -1076,6 +1107,17 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   height: 1px;
   background: linear-gradient(to right, var(--color-primary), oklch(0.63 0.245 35 / 0.25));
   flex-shrink: 0;
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-eyebrow::before {
+    animation: eyebrow-grow 800ms 250ms var(--ease-out) backwards;
+  }
+}
+
+@keyframes eyebrow-grow {
+  from { transform: scaleX(0); }
 }
 
 .hero-heading {
@@ -1087,15 +1129,39 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   max-width: 12ch;
 }
 
+/* Line-mask reveal: cada línea sube desde detrás de su máscara.
+   clip-path en vez de overflow:hidden — solo recorta por abajo, los glifos
+   italic y los puntos finales pueden desbordar a los costados sin cortarse */
+.hero-heading .line {
+  display: block;
+  clip-path: inset(-0.5em -0.75em 0 -0.75em);
+  padding-bottom: 0.08em; /* room for descenders (p, g) under the tight line-height */
+  margin-bottom: -0.08em;
+}
+
+.hero-heading .line-inner { display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-heading .line-inner {
+    transform: translateY(115%);
+    animation: line-rise 900ms var(--ease-out) forwards;
+  }
+  .hero-heading .line:nth-child(2) .line-inner { animation-delay: 160ms; }
+}
+
+@keyframes line-rise {
+  to { transform: translateY(0); }
+}
+
 .hero-heading em {
   display: inline-block;
   font-style: italic;
-  color: var(--color-primary);
-  transition: transform 1000ms 200ms var(--ease-out);
-}
-
-@starting-style {
-  .hero-heading em { transform: translateX(-20px); }
+  background: linear-gradient(105deg, var(--color-tertiary) 10%, var(--color-primary) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.08em; /* keep descenders inside the clipped paint box */
+  margin-bottom: -0.08em;
 }
 
 .hero-body {
@@ -1426,7 +1492,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     gap: var(--space-1);
   }
   .menu-tabs::-webkit-scrollbar { display: none; }
-  .tab-btn { flex-shrink: 0; }
+  .tab-btn { flex: none; }
 }
 
 .tab-btn {
@@ -1446,6 +1512,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
               transform 120ms var(--ease-out);
   white-space: nowrap;
   position: relative;
+  flex: 1;
+  text-align: center;
 }
 
 .tab-btn:active { transform: scale(0.95); }
@@ -1487,6 +1555,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   transform: translateY(-4px);
   transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out);
   pointer-events: none;
+}
+
+@keyframes panel-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel.is-entering {
+  animation: panel-enter 200ms var(--ease-out) forwards;
 }
 
 @starting-style {
@@ -1614,6 +1691,30 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 .menu-subsection { margin-top: var(--space-12); }
 .menu-subsection--first { margin-top: 0; }
+
+.platos-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.platos-side {
+  border-left: 1px solid var(--color-border);
+  padding-left: clamp(2rem, 5vw, 5rem);
+}
+
+@media (max-width: 768px) {
+  .platos-grid {
+    grid-template-columns: 1fr;
+  }
+  .platos-side {
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    padding-left: 0;
+    padding-top: var(--space-12);
+  }
+}
 
 .menu-subsection-title {
   font-family: var(--font-body);
@@ -2261,17 +2362,30 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   padding-top: 0;
 }
 
-/* Scrim: oscuro a la izquierda + desde abajo */
+/* Scrim direccional: denso bajo el texto, abre hacia la derecha para que la foto respire */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(oklch(0.10 0.012 50 / 0.87), oklch(0.10 0.012 50 / 0.87)),
-    linear-gradient(to right, oklch(0.10 0.012 50 / 0.30) 0%, transparent 55%),
-    linear-gradient(to top,   oklch(0.10 0.012 50 / 0.70) 0%, transparent 40%);
+    linear-gradient(to right,
+      oklch(0.10 0.012 50 / 0.94) 0%,
+      oklch(0.10 0.012 50 / 0.82) 38%,
+      oklch(0.10 0.012 50 / 0.48) 68%,
+      oklch(0.10 0.012 50 / 0.58) 100%),
+    linear-gradient(to top,    oklch(0.10 0.012 50 / 0.88) 0%, transparent 38%),
+    linear-gradient(to bottom, oklch(0.10 0.012 50 / 0.55) 0%, transparent 22%);
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  /* En mobile el texto ocupa todo el ancho — scrim uniforme para contraste AA */
+  .hero::before {
+    background:
+      linear-gradient(oklch(0.10 0.012 50 / 0.82), oklch(0.10 0.012 50 / 0.82)),
+      linear-gradient(to top, oklch(0.10 0.012 50 / 0.85) 0%, transparent 45%);
+  }
 }
 
 /* La foto pasa a ser el fondo — cubre todo el hero */
@@ -2424,10 +2538,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 @media (hover: hover) and (pointer: fine) {
   .stat-item:hover { transform: translateY(-4px); }
   .stat-item:hover::after { opacity: 1; }
-  .stat-item:hover .stat-number { color: var(--color-tertiary); }
+  .stat-item:hover .stat-number { filter: brightness(1.18); }
 }
 
-.stat-number { transition: color 150ms var(--ease-out); }
+.stat-number { transition: filter 150ms var(--ease-out); }
 
 .stat-divider {
   background: linear-gradient(to bottom, transparent 0%, var(--color-border) 30%, var(--color-border) 70%, transparent 100%);
@@ -2493,7 +2607,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   font-size: clamp(2.75rem, 5.5vw, 5rem);
   line-height: 1.0;
   letter-spacing: -0.03em;
-  margin-bottom: clamp(2rem, 4vw, 4rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .doneness-layout {
@@ -2643,6 +2757,342 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   .doneness-item { opacity: 1; }
   .doneness-item:not(.is-active) { opacity: 0.6; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BEAUTY PASS — craft, luz y micro-detalle
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Scroll progress: hilo de oro que mide la página ─────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-tertiary), var(--color-primary));
+  box-shadow: 0 0 8px oklch(0.63 0.245 35 / 0.45);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 100;
+  pointer-events: none;
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      display: block;
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ─── Marquee editorial — tipografía como textura ─────────────────────────── */
+.marquee {
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-seq {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2.75rem, 7vw, 6rem);
+  line-height: 1.15;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px oklch(0.64 0.06 65 / 0.75);
+  padding-right: 0.35em;
+  user-select: none;
+}
+
+.marquee-seq em {
+  font-style: normal;
+  color: var(--color-primary);
+  -webkit-text-stroke: 0px transparent;
+  font-size: 0.5em;
+  vertical-align: middle;
+  padding-inline: 0.3em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track { animation: marquee-scroll 38s linear infinite; }
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ─── Drop cap editorial en la primera historia ───────────────────────────── */
+#historia .story-text > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.3em;
+  line-height: 0.78;
+  float: left;
+  padding-right: 0.14em;
+  margin-top: 0.05em;
+  color: var(--color-primary);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ─── Botones: brillo que barre al hover ──────────────────────────────────── */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before,
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 50%;
+  background: linear-gradient(105deg, transparent, oklch(1 0 0 / 0.32), transparent);
+  transform: skewX(-20deg);
+  transition: transform 650ms var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover::before,
+  .btn-whatsapp:hover::before {
+    transform: translateX(340%) skewX(-20deg);
+  }
+}
+
+/* ─── Stats: números con gradiente de brasa ───────────────────────────────── */
+.stat-number {
+  background: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-primary) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.12em;  /* descenders (j) need paint box below the baseline */
+  margin-bottom: -0.12em;
+}
+
+/* ─── Galería: reset del button + focus ring ──────────────────────────────── */
+button.gallery-img-wrap {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  display: block;
+  width: 100%;
+}
+
+button.gallery-img-wrap:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ─── Lightbox ─────────────────────────────────────────────────────────────── */
+.lightbox {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: min(92vw, 1080px);
+  max-height: 90dvh;
+  margin: auto;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background: oklch(0.05 0.01 40 / 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.lightbox[open] { animation: lightbox-in 340ms var(--ease-out); }
+.lightbox[open]::backdrop { animation: backdrop-in 340ms ease; }
+
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+}
+
+.lightbox-figure { margin: 0; }
+
+.lightbox-img {
+  width: 100%;
+  max-height: 78dvh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 120px oklch(0 0 0 / 0.6);
+}
+
+.lightbox-caption {
+  text-align: center;
+  color: var(--color-ink-muted);
+  padding-top: var(--space-4);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: calc(-1 * var(--space-12));
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: oklch(0.18 0.012 50 / 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-close:hover { background: oklch(0.26 0.02 50); transform: rotate(90deg); }
+}
+
+.lightbox-close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* El scroll de fondo se congela mientras el lightbox está abierto */
+body:has(.lightbox[open]) { overflow: hidden; }
+
+/* ─── Divider: brasa que viaja por el hilo ────────────────────────────────── */
+.section-divider {
+  position: relative;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    width: 16%;
+    height: 1px;
+    translate: 0 -50%;
+    background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+    filter: drop-shadow(0 0 6px oklch(0.63 0.245 35 / 0.8));
+    animation: divider-travel 8s var(--ease-in-out) infinite alternate;
+  }
+}
+
+@keyframes divider-travel {
+  from { transform: translateX(0); }
+  to   { transform: translateX(475%); }
+}
+
+/* ─── Reservas: shimmer dorado en la palabra clave ────────────────────────── */
+.reservations-content h2 em {
+  background: linear-gradient(100deg,
+    var(--color-tertiary) 0%,
+    var(--color-primary) 45%,
+    var(--color-tertiary) 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.08em; /* keep descenders inside the clipped paint box */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reservations-content h2 em { animation: gold-shimmer 5.5s ease-in-out infinite; }
+}
+
+@keyframes gold-shimmer {
+  0%, 100% { background-position: 0% 0; }
+  50%      { background-position: 100% 0; }
+}
+
+/* ─── Footer wordmark: emerge con el scroll ───────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .footer-wordmark {
+      animation: wordmark-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+  }
+}
+
+@keyframes wordmark-rise {
+  from { opacity: 0; transform: translateY(28%); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── Doneness: luz de brasa bajo el corte ────────────────────────────────── */
+.doneness-image-panel::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 4%;
+  height: 36%;
+  background: radial-gradient(ellipse 70% 60% at 50% 75%, oklch(0.50 0.19 35 / 0.32), transparent 70%);
+  filter: blur(28px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ─── Nav logo: vida al hover ─────────────────────────────────────────────── */
+.nav-logo img {
+  transition: transform 250ms var(--ease-out), filter 250ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-logo:hover img {
+    transform: scale(1.07) rotate(-2deg);
+    filter: drop-shadow(0 0 10px oklch(0.63 0.245 35 / 0.5));
+  }
+}
+
+/* ─── Badge "Especial": destello periódico ────────────────────────────────── */
+.badge {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-130%) skewX(-18deg);
+    background: linear-gradient(105deg, transparent, oklch(1 0 0 / 0.2), transparent);
+    animation: badge-shine 5s ease-in-out infinite;
+  }
+}
+
+@keyframes badge-shine {
+  0%, 72% { transform: translateX(-130%) skewX(-18deg); }
+  100%    { transform: translateX(230%) skewX(-18deg); }
+}
+
+/* ─── Fotos de historia: color cálido afinado ─────────────────────────────── */
+.story-img { filter: saturate(1.06) contrast(1.02); }
 </style>
 
 
@@ -2732,15 +3182,32 @@ tabs.forEach(tab => {
     updateIndicator(tab);
     scrollTabIntoView(tab);
 
+    const showPanel = (id) => {
+      const next = document.getElementById(`panel-${id}`);
+      if (!next) return;
+      next.classList.remove('is-hidden');
+      next.classList.add('is-entering');
+      next.addEventListener('animationend', () => next.classList.remove('is-entering'), { once: true });
+    };
+
+    const scrollToTabs = () => {
+      const tabsEl = document.querySelector('.menu-tabs');
+      if (!tabsEl) return;
+      const navHeight = document.querySelector('.site-nav')?.offsetHeight ?? 0;
+      const top = tabsEl.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
+    };
+
     if (currentPanel) {
       currentPanel.classList.add('is-exiting');
+      scrollToTabs();
       setTimeout(() => {
         currentPanel.classList.remove('is-exiting');
         currentPanel.classList.add('is-hidden');
-        document.getElementById(`panel-${targetId}`)?.classList.remove('is-hidden');
+        showPanel(targetId);
       }, 150);
     } else {
-      document.getElementById(`panel-${targetId}`)?.classList.remove('is-hidden');
+      showPanel(targetId);
     }
   });
 });
@@ -2793,6 +3260,30 @@ if (donenessItems.length) {
 
   donenessItems.forEach(item => donenessObserver.observe(item));
 }
+
+/* ─── Gallery lightbox ────────────────────────────────────────────────────── */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox?.querySelector('.lightbox-img');
+const lightboxCaption = lightbox?.querySelector('.lightbox-caption');
+
+document.querySelectorAll('.gallery-img-wrap').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const img = trigger.querySelector('.gallery-img');
+    if (!img || !lightbox || !lightboxImg) return;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    if (lightboxCaption) {
+      lightboxCaption.textContent = trigger.querySelector('.gallery-caption')?.textContent ?? '';
+    }
+    lightbox.showModal();
+  });
+});
+
+lightbox?.addEventListener('click', (e) => {
+  if (e.target === lightbox) lightbox.close();
+});
+
+lightbox?.querySelector('.lightbox-close')?.addEventListener('click', () => lightbox?.close());
 
 /* ─── Highlight today's opening hours ────────────────────────────────────── */
 const todayRow = document.querySelector(`.hours-row[data-day="${new Date().getDay()}"]`);

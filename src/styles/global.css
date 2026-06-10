@@ -196,6 +196,11 @@ ul, ol { list-style: none; }
   color: oklch(0.97 0.01 80);
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
 /* Anchor targets clear the fixed nav on jump/smooth-scroll */
 section[id], footer[id] {
   scroll-margin-top: 88px;
