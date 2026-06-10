@@ -29,14 +29,18 @@ Open [http://localhost:4321](http://localhost:4321) in your browser.
 
 ```
 src/
-└── pages/
-    ├── index.astro       # Main landing page
-    ├── privacidad.astro
-    └── terminos.astro
+├── pages/
+│   ├── index.astro       # Main landing page (monolithic — all sections)
+│   ├── privacidad.astro
+│   └── terminos.astro
+└── styles/
+    └── global.css        # Design tokens, base styles, component CSS
 public/
 └── images/               # Photography and assets
 ```
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com). Every push to `main` triggers an automatic deployment.
+Deployed on [Cloudflare Pages](https://pages.cloudflare.com). Every push to `main` triggers an automatic deployment.
+
+Live: https://websitelosches.pages.dev
