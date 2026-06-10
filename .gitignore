@@ -27,6 +27,10 @@ pnpm-debug.log*
 playwright-report/
 test-results/
 
+# local screenshot output and shell crash dumps
+shots/
+sh.exe.stackdump
+
 # Claude Code / agent tooling
 .agents/
 .claude/
