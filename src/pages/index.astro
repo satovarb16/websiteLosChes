@@ -2423,25 +2423,28 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 .hero-inner {
   display: block;
   grid-template-columns: unset;
-  padding-block: 0 clamp(4.5rem, 8vw, 8rem);
+  /* .hero es flex column: sin width:100% los margin-inline:auto de .section-inner
+     ganan sobre el stretch y el contenedor se encoge al contenido. */
+  width: 100%;
+  padding-block: 0 clamp(7rem, 13vw, 12rem);
   padding-top: clamp(5rem, 8vw, 8rem);
   z-index: 3;
 }
 
 .hero-text {
-  max-width: 54%;
+  max-width: 68%;
 }
 
 /* Heading MASIVO — la fuente trabaja como imagen */
 .hero-heading {
   font-size: clamp(3.5rem, 8vw, 6rem);
-  line-height: 0.9;
+  line-height: 0.96;
   letter-spacing: -0.04em;
   max-width: none;
   margin-bottom: var(--space-8);
 }
 
-.hero-body { max-width: 44ch; }
+.hero-body { max-width: 52ch; }
 
 /* Reemplazar el par btn-primary + btn-outline por primario + text-link */
 .hero-actions .btn-outline {
