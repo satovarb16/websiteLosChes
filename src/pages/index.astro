@@ -1,6 +1,22 @@
 ---
 import '../styles/global.css';
 import { Image } from 'astro:assets';
+
+// Local images optimized at build by Astro (AVIF/WebP + responsive srcset).
+// Sourced from src/assets so Astro processes them — public/ images are served untouched.
+import heroImg from '../assets/images/hero.png';
+import historia1 from '../assets/images/historia-1.png';
+import historia2 from '../assets/images/historia-2.png';
+import galleryKamado from '../assets/images/gallery-kamado.png';
+import galleryTomahawk from '../assets/images/gallery-tomahawk.png';
+import galleryAngus from '../assets/images/gallery-angus.png';
+import galleryLomo from '../assets/images/gallery-lomo.png';
+import galleryBurger from '../assets/images/gallery-burger.png';
+import donenessRare from '../assets/images/rare.png';
+import donenessMediumRare from '../assets/images/medium_rare.png';
+import donenessMedium from '../assets/images/medium.png';
+import donenessWellDone from '../assets/images/well_done.png';
+
 const whatsappNumber = "+19547707573";
 const whatsappMsg = encodeURIComponent("Hola, quiero hacer una reserva en Los Ches.");
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
@@ -80,11 +96,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   <!-- Foto full-bleed — directa en .hero para que position:absolute;inset:0 sea relativo a la sección -->
   <div class="hero-image" aria-hidden="true">
     <Image
-      src="/images/hero.png"
+      src={heroImg}
       alt="Parrilla Los Ches — cortes Angus al kamado con chorizos artesanales"
       class="hero-img"
-      width={800}
-      height={1000}
+      widths={[400, 600, 800]}
+      sizes="100vw"
+      format="webp"
+      quality={82}
       fetchpriority="high"
       loading="eager"
     />
@@ -149,7 +167,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   </div>
   <div class="story-inner section-inner">
     <div class="story-image reveal" data-reveal>
-      <Image src="/images/historia-1.png" alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" width={600} height={750} />
+      <Image src={historia1} alt="El fundador de Los Ches — pasión y tradición parrillera" class="story-img" loading="lazy" widths={[400, 600]} sizes="(max-width: 768px) 100vw, 600px" format="webp" quality={82} />
     </div>
     <div class="story-text reveal" data-reveal data-reveal-delay="1">
       <h2 id="story1-heading">
@@ -184,7 +202,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       </p>
     </div>
     <div class="story-image reveal" data-reveal data-reveal-delay="1">
-      <Image src="/images/gallery-kamado.png" alt="El kamado rojo de Los Ches — técnica japonesa, alma peruana" class="story-img" loading="lazy" width={600} height={750} />
+      <Image src={galleryKamado} alt="El kamado rojo de Los Ches — técnica japonesa, alma peruana" class="story-img" loading="lazy" widths={[400, 600]} sizes="(max-width: 768px) 100vw, 600px" format="webp" quality={82} />
     </div>
   </div>
 </section>
@@ -199,10 +217,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
         <h2 id="doneness-heading" class="doneness-heading">El punto perfecto.</h2>
         <div class="doneness-image-panel" aria-hidden="true">
         <!-- TODO: replace with real doneness-level photography -->
-        <Image class="doneness-img" data-index="0" src="/images/rare.png"        alt="Punto de cocción: Rojo / Sellado"  width={400} height={533} loading="lazy" />
-        <Image class="doneness-img" data-index="1" src="/images/medium_rare.png"  alt="Punto de cocción: Término Medio"   width={400} height={533} loading="lazy" />
-        <Image class="doneness-img" data-index="2" src="/images/medium.png"       alt="Punto de cocción: Tres Cuartos"    width={400} height={533} loading="lazy" />
-        <Image class="doneness-img" data-index="3" src="/images/well_done.png"    alt="Punto de cocción: Bien Cocido"     width={400} height={533} loading="lazy" />
+        <Image class="doneness-img" data-index="0" src={donenessRare}        alt="Punto de cocción: Rojo / Sellado"  widths={[400, 800]} sizes="(max-width: 768px) 70vw, 400px" format="webp" quality={85} loading="lazy" />
+        <Image class="doneness-img" data-index="1" src={donenessMediumRare}  alt="Punto de cocción: Término Medio"   widths={[400, 800]} sizes="(max-width: 768px) 70vw, 400px" format="webp" quality={85} loading="lazy" />
+        <Image class="doneness-img" data-index="2" src={donenessMedium}      alt="Punto de cocción: Tres Cuartos"    widths={[400, 800]} sizes="(max-width: 768px) 70vw, 400px" format="webp" quality={85} loading="lazy" />
+        <Image class="doneness-img" data-index="3" src={donenessWellDone}    alt="Punto de cocción: Bien Cocido"     widths={[400, 800]} sizes="(max-width: 768px) 70vw, 400px" format="webp" quality={85} loading="lazy" />
       </div>
       </div>
 
@@ -257,35 +275,35 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     <div class="gallery-grid" role="list">
       <div class="gallery-item reveal gallery-item--1" data-reveal data-reveal-delay="1" role="listitem">
         <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Mesa compartida">
-          <Image src="/images/historia-2.png" alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" width={800} height={600} />
+          <Image src={historia2} alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <span class="gallery-caption">Mesa compartida</span>
         </button>
       </div>
       <div class="gallery-item reveal gallery-item--2" data-reveal data-reveal-delay="2" role="listitem">
         <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Tomahawk">
-          <Image src="/images/gallery-tomahawk.png" alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" width={800} height={600} />
+          <Image src={galleryTomahawk} alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <span class="gallery-caption">Tomahawk</span>
         </button>
       </div>
       <div class="gallery-item reveal gallery-item--3" data-reveal data-reveal-delay="1" role="listitem">
         <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Bife Ancho Angus">
-          <Image src="/images/gallery-angus.png" alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" width={800} height={600} />
+          <Image src={galleryAngus} alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <span class="gallery-caption">Bife Ancho Angus</span>
         </button>
       </div>
       <div class="gallery-item reveal gallery-item--4" data-reveal data-reveal-delay="2" role="listitem">
         <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Lomo Saltado">
-          <Image src="/images/gallery-lomo.png" alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" width={800} height={600} />
+          <Image src={galleryLomo} alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <span class="gallery-caption">Lomo Saltado</span>
         </button>
       </div>
       <div class="gallery-item reveal gallery-item--5" data-reveal data-reveal-delay="3" role="listitem">
         <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Che Burger">
-          <Image src="/images/gallery-burger.png" alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" width={800} height={600} />
+          <Image src={galleryBurger} alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
           <div class="gallery-overlay" aria-hidden="true"></div>
           <span class="gallery-caption">Che Burger</span>
         </button>
