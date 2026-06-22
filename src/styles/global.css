@@ -168,11 +168,8 @@ body {
 }
 
 .smoke--1 { left:  10%; width:  70px; height: 600px; animation-delay:   0s; animation-duration: 33s; }
-.smoke--2 { left:  27%; width:  95px; height: 720px; animation-delay: -11s; animation-duration: 29s; }
 .smoke--3 { left:  47%; width:  65px; height: 560px; animation-delay: -21s; animation-duration: 36s; }
-.smoke--4 { left:  64%; width:  85px; height: 650px; animation-delay:  -6s; animation-duration: 31s; }
 .smoke--5 { left:  79%; width:  60px; height: 520px; animation-delay: -17s; animation-duration: 27s; }
-.smoke--6 { left:  37%; width:  80px; height: 680px; animation-delay: -26s; animation-duration: 34s; }
 
 /* Film grain — material depth sutil */
 body::after {
