@@ -2,16 +2,23 @@
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 
-// Local images optimized at build by Astro (AVIF/WebP + responsive srcset).
-// Sourced from src/assets so Astro processes them — public/ images are served untouched.
-import heroImg from '../assets/images/hero.png';
-import historia1 from '../assets/images/historia-1.png';
-import historia2 from '../assets/images/historia-2.png';
-import galleryKamado from '../assets/images/gallery-kamado.png';
-import galleryTomahawk from '../assets/images/gallery-tomahawk.png';
-import galleryAngus from '../assets/images/gallery-angus.png';
-import galleryLomo from '../assets/images/gallery-lomo.png';
-import galleryBurger from '../assets/images/gallery-burger.png';
+// Local images optimized at build by Astro (WebP + responsive srcset).
+// Convention: src/assets/images/<section>/<name>. public/ holds fixed-URL assets only.
+import heroImg from '../assets/images/principal/principal.jpg';
+import historia1 from '../assets/images/historia/historia-1.jpg';
+import historia2 from '../assets/images/historia/historia-2.jpg';
+import galeria1 from '../assets/images/gallery/galeria-1.jpg';
+import galeria2 from '../assets/images/gallery/galeria-2.jpg';
+import galeria3 from '../assets/images/gallery/galeria-3.jpg';
+import galeria4 from '../assets/images/gallery/galeria-4.jpg';
+import galeria5 from '../assets/images/gallery/galeria-5.jpg';
+import galeria6 from '../assets/images/gallery/galeria-6.jpg';
+import galeria7 from '../assets/images/gallery/galeria-7.jpg';
+import galeria8 from '../assets/images/gallery/galeria-8.jpg';
+import galeria9 from '../assets/images/gallery/galeria-9.jpg';
+import galeria10 from '../assets/images/gallery/galeria-10.jpg';
+import galeria11 from '../assets/images/gallery/galeria-11.jpg';
+import galeria12 from '../assets/images/gallery/galeria-12.jpg';
 import donenessRare from '../assets/images/rare.png';
 import donenessMediumRare from '../assets/images/medium_rare.png';
 import donenessMedium from '../assets/images/medium.png';
@@ -21,28 +28,22 @@ const whatsappNumber = "+51981743813";
 const whatsappMsg = encodeURIComponent("Hola, quiero hacer una reserva en Los Ches.");
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
-// ─── GALERÍA: 12 fotos en 2 páginas de 6 ──────────────────────────────────
-// TODO(galería): las 6 fotos de la página 2 son placeholders (reusan las
-// actuales). Para poner las reales del Google Drive:
-//   1. Descargá las 12 imágenes a src/assets/images/ (ej: gallery-07.png …).
-//   2. Importá cada nueva arriba, junto a las otras `import galleryX from …`.
-//   3. Reemplazá `src`, `alt` y `caption` en los slots de abajo.
-// Astro NO puede importar archivos que todavía no existen, por eso quedan en
-// placeholder hasta que subas las reales.
+// ─── GALERÍA: 12 fotos reales en 2 páginas de 6 ───────────────────────────
+// Carrusel posicional (galeria-1..12). El "qué es" vive en el caption, no en
+// el nombre del archivo: las fotos rotan y no siempre son del mismo plato.
 const galleryImages = [
-  { src: historia2,       alt: "Mesa compartida en Los Ches — parrilla, vino y familia", caption: "Mesa compartida" },
-  { src: galleryTomahawk, alt: "Tomahawk de Los Ches con chimichurri",                    caption: "Tomahawk" },
-  { src: galleryAngus,    alt: "Bife Ancho Angus sellado — corte importado al kamado",    caption: "Bife Ancho Angus" },
-  { src: galleryLomo,     alt: "Lomo Saltado Los Ches — la fusión que nos define",        caption: "Lomo Saltado" },
-  { src: galleryBurger,   alt: "Che Burger — hamburguesa Angus con todo",                 caption: "Che Burger" },
-  { src: galleryKamado,   alt: "El kamado rojo de Los Ches — técnica japonesa, alma peruana", caption: "Kamado al rojo" },
-  // ── Página 2 — placeholders, reemplazar por las fotos del Drive ──
-  { src: galleryTomahawk, alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
-  { src: galleryAngus,    alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
-  { src: galleryLomo,     alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
-  { src: galleryBurger,   alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
-  { src: galleryKamado,   alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
-  { src: historia2,       alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: galeria1,  alt: "Parrilla para compartir de Los Ches — cortes, chorizos, papas y ensalada", caption: "Parrilla para compartir" },
+  { src: galeria2,  alt: "Corte a la parrilla con chimichurri de la casa",          caption: "Bife al chimichurri" },
+  { src: galeria3,  alt: "Entraña a la parrilla fileteada con chimichurri",         caption: "Entraña fileteada" },
+  { src: galeria4,  alt: "Sánguche de pollo crocante con salsa criolla",            caption: "Pan con pollo crocante" },
+  { src: galeria5,  alt: "Che Burger con papas y cerveza artesanal",                caption: "Che Burger" },
+  { src: galeria6,  alt: "Panceta crocante a la parrilla",                          caption: "Panceta al fuego" },
+  { src: galeria7,  alt: "Bife ancho Angus sellado con chimichurri",               caption: "Bife ancho Angus" },
+  { src: galeria8,  alt: "Tostadas con tomate y jamón crudo",                       caption: "Bruschettas de la casa" },
+  { src: galeria9,  alt: "Pan con carne al horno fileteada",                        caption: "Sánguche de asado" },
+  { src: galeria10, alt: "Tomahawk a la parrilla con espárragos y champiñones",     caption: "Tomahawk a la parrilla" },
+  { src: galeria11, alt: "Chorizos artesanales a la parrilla",                      caption: "Chorizos artesanales" },
+  { src: galeria12, alt: "Salteado de langostinos con papas y arroz",              caption: "Saltado de mariscos" },
 ];
 const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 ---
@@ -54,10 +55,10 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   <meta name="description" content="Los Ches — Parrilla y kamado en Lima. Cortes Angus importados, parrillas para compartir y el sabor de una reunión familiar." />
   <meta property="og:title" content="Los Ches — Grill &amp; Meals" />
   <meta property="og:description" content="Cortes Angus argentinos y americanos al kamado, parrillas para compartir, en Lima, Perú." />
-  <meta property="og:image" content="/images/hero.png" />
+  <meta property="og:image" content="/images/principal.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="/images/hero.png" />
+  <meta name="twitter:image" content="/images/principal.jpg" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <title>Los Ches — Grill & Meals</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -120,10 +121,10 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   <div class="hero-image" aria-hidden="true">
     <Image
       src={heroImg}
-      alt="Parrilla Los Ches — cortes Angus al kamado con chorizos artesanales"
+      alt="Tomahawk de Los Ches recién cortado, listo para la parrilla"
       class="hero-img"
-      widths={[400, 600, 800]}
-      sizes="100vw"
+      widths={[600, 900, 1200, 1600]}
+      sizes="(max-width: 768px) 100vw, 50vw"
       format="webp"
       quality={82}
       fetchpriority="high"
@@ -215,24 +216,23 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   <div class="story-inner section-inner">
     <div class="story-text reveal" data-reveal>
       <h2 id="story2-heading">
-        El kamado hace<br />la <span class="accent-ember">diferencia.</span>
+        Detrás de cada plato,<br />una <span class="accent-ember">obsesión.</span>
       </h2>
       <p>
-        El kamado retiene el calor y la humedad de una manera que ninguna parrilla convencional puede igualar. Cada corte Angus se cocina a temperatura controlada, con un ahumado natural que potencia el sabor sin taparlo.
+        Cada plato que sale de nuestra cocina busca el mismo equilibrio: la parrilla argentina y el alma peruana en un mismo bocado. Un salteado en su punto, el toque final de cilantro, los detalles que no se negocian.
       </p>
       <p>
-        El punto perfecto lo eliges tú. Término medio, tres cuartos, bien cocido: en Los Ches, cada corte sale como lo pides, siempre perfecto.
+        Y cuando se trata de tus cortes, el punto lo eliges tú. Término medio, tres cuartos, bien cocido: en Los Ches, cada corte sale como lo pides, siempre perfecto.
       </p>
     </div>
     <div class="story-image reveal" data-reveal data-reveal-delay="1">
-      <Image src={galleryKamado} alt="El kamado rojo de Los Ches — técnica japonesa, alma peruana" class="story-img" loading="lazy" widths={[400, 600]} sizes="(max-width: 768px) 100vw, 600px" format="webp" quality={82} />
+      <Image src={historia2} alt="El chef de Los Ches emplatando un salteado — el toque final de cilantro" class="story-img" loading="lazy" widths={[400, 600]} sizes="(max-width: 768px) 100vw, 600px" format="webp" quality={82} />
     </div>
   </div>
 </section>
 
 
 <!-- ─── DONENESS SECTION ───────────────────────────────────────────────────── -->
-<div class="doneness-scroll-wrapper">
 <section class="doneness-section" aria-labelledby="doneness-heading">
   <div class="section-inner">
     <div class="doneness-layout">
@@ -277,7 +277,6 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
     </div>
   </div>
 </section>
-</div>
 
 
 <!-- ─── MARQUEE ───────────────────────────────────────────────────────────── -->
@@ -308,7 +307,6 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
                 <button type="button" class="gallery-img-wrap" aria-label={`Ampliar foto: ${item.caption}`}>
                   <Image src={item.src} alt={item.alt} loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
                   <div class="gallery-overlay" aria-hidden="true"></div>
-                  <span class="gallery-caption">{item.caption}</span>
                 </button>
               </div>
             ))}
@@ -464,7 +462,10 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
     <!-- CORTES AL KAMADO -->
     <div class="tab-panel is-hidden" id="panel-cortes" role="tabpanel" aria-labelledby="tab-cortes">
       <p class="menu-note">Cortes importados de Argentina y Estados Unidos. Cada corte se sirve con papas fritas o ensalada.</p>
-      <ul class="menu-list">
+      <div class="menu-cols">
+      <div class="menu-subsection menu-subsection--first">
+        <h3 class="menu-subsection-title">Res</h3>
+        <ul class="menu-list">
         <li class="menu-item">
           <div class="menu-item-info">
             <h3>Bife Angosto <span class="menu-weight">250 g</span></h3>
@@ -520,8 +521,9 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
           <span class="menu-price menu-price--consult">Consultar</span>
         </li>
       </ul>
+      </div>
 
-      <div class="menu-subsection">
+      <div class="menu-subsection menu-subsection--first">
         <h3 class="menu-subsection-title">Cerdo &amp; Pollo</h3>
         <ul class="menu-list">
           <li class="menu-item">
@@ -561,12 +563,14 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
           </li>
         </ul>
       </div>
+      </div>
     </div>
 
     <!-- PLATOS -->
     <div class="tab-panel is-hidden" id="panel-platos" role="tabpanel" aria-labelledby="tab-platos">
       <div class="platos-grid">
         <div class="platos-main">
+          <div class="menu-cols">
           <div class="menu-subsection menu-subsection--first">
             <h3 class="menu-subsection-title">Saltados al Wok</h3>
             <ul class="menu-list">
@@ -601,7 +605,7 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
             </ul>
           </div>
 
-          <div class="menu-subsection">
+          <div class="menu-subsection menu-subsection--first">
             <h3 class="menu-subsection-title">Sangu-Ches</h3>
             <ul class="menu-list">
               <li class="menu-item">
@@ -626,6 +630,7 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
                 <span class="menu-price">S/ 35</span>
               </li>
             </ul>
+          </div>
           </div>
         </div>
 
@@ -1765,6 +1770,18 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 .menu-subsection { margin-top: var(--space-12); }
 .menu-subsection--first { margin-top: 0; }
 
+/* Dos columnas para las pestañas largas (Cortes, Platos) — colapsa en chico */
+.menu-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .menu-cols { grid-template-columns: 1fr; gap: var(--space-12); }
+}
+
 .platos-grid {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -2482,6 +2499,12 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   border-radius: 0;
 }
 
+/* Foto vertical en hero apaisada: no se puede paneo horizontal con cover.
+   Zoom anclado a la izquierda para correr el tomahawk hacia la derecha del texto. */
+@media (min-width: 769px) {
+  .hero-img { transform: scale(1.22); transform-origin: left center; }
+}
+
 .hero-decor { z-index: 2; }
 
 /* Inner: block en vez de grid — texto libre, sin columna derecha */
@@ -2691,29 +2714,7 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 }
 
 /* ─── DONENESS SECTION ──────────────────────────────────────────────────────── */
-.doneness-scroll-wrapper {
-  height: 300vh;
-}
-
-.doneness-section {
-  padding-block: 0;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-}
-
-.doneness-section > .section-inner {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: calc(80px + 1.5rem);
-  padding-bottom: 1.5rem;
-  box-sizing: border-box;
-}
+.doneness-section { padding-block: clamp(4rem, 8vw, 8rem); }
 
 .doneness-heading {
   font-size: clamp(2.75rem, 5.5vw, 5rem);
@@ -2726,19 +2727,18 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   display: grid;
   grid-template-columns: 45% 1fr;
   gap: clamp(3rem, 6vw, 6rem);
-  align-items: center;
-  flex: 1;
-  min-height: 0;
+  align-items: start;
 }
 
 .doneness-left {
-  position: relative;
+  position: sticky;
+  top: calc(80px + var(--space-8));
 }
 
 .doneness-image-panel {
   position: relative;
-  height: min(calc(100vh - 200px), 520px);
-  aspect-ratio: unset;
+  aspect-ratio: 3/4;
+  transition: transform 400ms var(--ease-out);
 }
 
 .doneness-img {
@@ -2747,23 +2747,14 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center 30%;
   opacity: 0;
-  transition: filter 380ms var(--ease-out);
-}
-
-.doneness-img {
-  animation: meat-float 4s ease-in-out infinite;
-  will-change: transform;
+  transition: opacity 380ms var(--ease-out), filter 380ms var(--ease-out);
 }
 
 .doneness-img.is-active {
   opacity: 1;
   filter: drop-shadow(0 40px 60px oklch(0 0 0 / 0.55));
-}
-
-@keyframes meat-float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-14px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2776,60 +2767,60 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   margin: 0;
   display: flex;
   flex-direction: column;
-  height: min(calc(100vh - 200px), 600px);
 }
 
-/* --f (0..1) is the per-item focus factor, driven continuously by scroll on
-   desktop. Every accent below is a pure function of --f so they move together. */
 .doneness-item {
-  --f: 0;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: clamp(0.5rem, 1vw, 0.875rem);
-  overflow: hidden;
+  padding-block: clamp(2.5rem, 5vw, 5rem);
+  padding-left: clamp(1.75rem, 3vw, 2.5rem);
   border-bottom: 1px solid var(--color-border);
-  opacity: calc(0.38 + 0.62 * var(--f));
+  opacity: 0.35;
+  transition: opacity 300ms var(--ease-out);
   position: relative;
   cursor: default;
 }
 
 .doneness-item:first-child { border-top: 1px solid var(--color-border); }
 
+.doneness-item.is-active { opacity: 1; }
+
 .doneness-item::before {
   content: '';
   position: absolute;
   left: -2px;
-  top: 8px;
-  bottom: 8px;
+  top: 24px;
+  bottom: 24px;
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--color-primary) 30%, var(--color-primary) 70%, transparent);
-  transform: scaleY(var(--f));
-  transform-origin: center;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 220ms var(--ease-out);
   border-radius: 1px;
 }
+
+.doneness-item.is-active::before { transform: scaleY(1); }
 
 .doneness-num {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.85;
-  color: oklch(0.63 0.245 35 / calc(0.12 + 0.88 * var(--f)));
-  margin-bottom: var(--space-2);
+  color: oklch(0.63 0.245 35 /0.12);
+  margin-bottom: var(--space-3);
+  transition: color 200ms var(--ease-out);
 }
+
+.doneness-item.is-active .doneness-num { color: var(--color-primary); }
 
 .doneness-title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   color: var(--color-ink);
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .doneness-meta {
@@ -2839,40 +2830,28 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: var(--space-2);
-  opacity: calc(0.55 + 0.45 * var(--f));
+  margin-bottom: var(--space-3);
+  opacity: 0.7;
 }
+
+.doneness-item.is-active .doneness-meta { opacity: 1; }
 
 .doneness-desc {
   font-size: 0.9375rem;
   color: var(--color-ink-muted);
-  line-height: 1.5;
+  line-height: 1.7;
   max-width: 42ch;
 }
 
 @media (max-width: 768px) {
-  .doneness-scroll-wrapper { height: auto; }
-
-  .doneness-section {
-    position: relative;
-    height: auto;
-    padding-block: clamp(4rem, 8vw, 8rem);
-    overflow: visible;
-    display: block;
-  }
-
-  .doneness-section > .section-inner {
-    height: auto;
-    padding-top: 1.5rem;
-    display: block;
-  }
-
-  .doneness-items { height: auto; }
-
-
   .doneness-layout {
     grid-template-columns: 1fr;
     gap: var(--space-8);
+  }
+
+  .doneness-left {
+    position: relative;
+    top: auto;
   }
 
   .doneness-image-panel {
@@ -2880,24 +2859,8 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
     aspect-ratio: unset;
   }
 
-  .doneness-img { transition: opacity 380ms var(--ease-out), filter 380ms var(--ease-out); }
-
-  .doneness-item {
-    flex: unset;
-    min-height: auto;
-    padding-block: clamp(1.5rem, 3vw, 2.5rem);
-    display: block;
-    opacity: 1;
-    transition: opacity 300ms var(--ease-out);
-  }
+  .doneness-item { opacity: 1; }
   .doneness-item:not(.is-active) { opacity: 0.6; }
-
-  /* Mobile uses discrete is-active (IntersectionObserver), so transitions help. */
-  .doneness-item::before { transition: transform 220ms var(--ease-out); }
-  .doneness-item.is-active::before { transform: scaleY(1); }
-  .doneness-num { transition: color 200ms var(--ease-out); }
-  .doneness-item.is-active .doneness-num { color: var(--color-primary); }
-  .doneness-item.is-active .doneness-meta { opacity: 1; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -3091,6 +3054,9 @@ button.gallery-img-wrap:focus-visible {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Sin caption visible: no dejar el padding como hueco al ampliar */
+.lightbox-caption:empty { display: none; }
 
 .lightbox-close {
   position: absolute;
@@ -3369,80 +3335,31 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObserver.observe(el));
 
 /* ─── Doneness scroll sync ──────────────────────────────────────────────── */
-const donenessWrapper = document.querySelector('.doneness-scroll-wrapper');
-const donenessItems   = document.querySelectorAll('.doneness-item');
-const donenessImgs    = document.querySelectorAll('.doneness-img');
+const donenessItems = document.querySelectorAll('.doneness-item');
+const donenessImgs  = document.querySelectorAll('.doneness-img');
 
-if (donenessWrapper && donenessItems.length) {
-  const lastIndex = donenessItems.length - 1;
+function setDoneness(index) {
+  donenessItems.forEach((item, i) => {
+    const active = i === index;
+    item.classList.toggle('is-active', active);
+    item.setAttribute('aria-current', active ? 'true' : 'false');
+  });
+  donenessImgs.forEach((img, i) => {
+    img.classList.toggle('is-active', i === index);
+  });
+}
 
-  /* Toggles is-active for aria + the active meat's drop-shadow. On desktop the
-     visual accent is driven by --f (continuous), so is-active is inert there. */
-  function setActiveDoneness(index) {
-    donenessItems.forEach((item, i) => {
-      const active = i === index;
-      item.classList.toggle('is-active', active);
-      item.setAttribute('aria-current', active ? 'true' : 'false');
-    });
-    donenessImgs.forEach((img, i) => {
-      img.classList.toggle('is-active', i === index);
-    });
-  }
+if (donenessItems.length) {
+  setDoneness(0);
 
-  /* Continuous (desktop) — every accent follows scroll through a single focus
-     factor --f, so number, bar, meta and text light up together.
-     pos is a fractional position in [0, lastIndex]. */
-  function applyContinuous(pos) {
-    donenessItems.forEach((item, i) => {
-      const f = Math.max(0, 1 - Math.abs(i - pos));
-      item.style.setProperty('--f', f.toFixed(3));
-    });
-    donenessImgs.forEach((img, i) => {
-      const dist = Math.abs(i - pos);
-      img.style.opacity = Math.max(0, 1 - dist).toFixed(3);
-    });
-    setActiveDoneness(Math.round(pos));
-  }
-
-  function clearInline() {
-    donenessItems.forEach(item => { item.style.removeProperty('--f'); });
-    donenessImgs.forEach(img => { img.style.opacity = ''; });
-  }
-
-  function syncDoneness() {
-    if (window.innerWidth <= 768) return;
-    const scrolled    = -donenessWrapper.getBoundingClientRect().top;
-    const totalScroll = donenessWrapper.offsetHeight - window.innerHeight;
-    const progress = Math.min(Math.max(scrolled / totalScroll, 0), 1);
-    applyContinuous(progress * lastIndex);
-  }
-
-  let ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { syncDoneness(); ticking = false; });
-  }
-
-  if (window.innerWidth > 768) syncDoneness();
-  else setActiveDoneness(0);
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) clearInline();
-    else syncDoneness();
-  }, { passive: true });
-
-  /* Mobile fallback: IntersectionObserver drives the discrete accent. */
   const donenessObserver = new IntersectionObserver((entries) => {
-    if (window.innerWidth > 768) return;
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        clearInline();
-        setActiveDoneness(parseInt(entry.target.dataset.index, 10));
+        const index = parseInt(entry.target.dataset.index, 10);
+        setDoneness(index);
       }
     }
-  }, { rootMargin: '-35% 0px -50% 0px', threshold: 0 });
+  }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
 
   donenessItems.forEach(item => donenessObserver.observe(item));
 }
