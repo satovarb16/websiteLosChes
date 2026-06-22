@@ -20,6 +20,31 @@ import donenessWellDone from '../assets/images/well_done.png';
 const whatsappNumber = "+51981743813";
 const whatsappMsg = encodeURIComponent("Hola, quiero hacer una reserva en Los Ches.");
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
+
+// ─── GALERÍA: 12 fotos en 2 páginas de 6 ──────────────────────────────────
+// TODO(galería): las 6 fotos de la página 2 son placeholders (reusan las
+// actuales). Para poner las reales del Google Drive:
+//   1. Descargá las 12 imágenes a src/assets/images/ (ej: gallery-07.png …).
+//   2. Importá cada nueva arriba, junto a las otras `import galleryX from …`.
+//   3. Reemplazá `src`, `alt` y `caption` en los slots de abajo.
+// Astro NO puede importar archivos que todavía no existen, por eso quedan en
+// placeholder hasta que subas las reales.
+const galleryImages = [
+  { src: historia2,       alt: "Mesa compartida en Los Ches — parrilla, vino y familia", caption: "Mesa compartida" },
+  { src: galleryTomahawk, alt: "Tomahawk de Los Ches con chimichurri",                    caption: "Tomahawk" },
+  { src: galleryAngus,    alt: "Bife Ancho Angus sellado — corte importado al kamado",    caption: "Bife Ancho Angus" },
+  { src: galleryLomo,     alt: "Lomo Saltado Los Ches — la fusión que nos define",        caption: "Lomo Saltado" },
+  { src: galleryBurger,   alt: "Che Burger — hamburguesa Angus con todo",                 caption: "Che Burger" },
+  { src: galleryKamado,   alt: "El kamado rojo de Los Ches — técnica japonesa, alma peruana", caption: "Kamado al rojo" },
+  // ── Página 2 — placeholders, reemplazar por las fotos del Drive ──
+  { src: galleryTomahawk, alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: galleryAngus,    alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: galleryLomo,     alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: galleryBurger,   alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: galleryKamado,   alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+  { src: historia2,       alt: "Foto pendiente de Los Ches", caption: "Próximamente" },
+];
+const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 ---
 
 <html lang="es">
@@ -271,43 +296,30 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
       <h2 id="gallery-heading">Así se ve Los Ches.</h2>
       <p>El fuego, los cortes, la mesa compartida.</p>
     </div>
-    <div class="gallery-grid" role="list">
-      <div class="gallery-item reveal gallery-item--1" data-reveal data-reveal-delay="1" role="listitem">
-        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Mesa compartida">
-          <Image src={historia2} alt="Mesa compartida en Los Ches — parrilla, vino y familia" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <span class="gallery-caption">Mesa compartida</span>
-        </button>
+    <div class="gallery-carousel">
+      <button type="button" class="gallery-nav gallery-nav--prev" aria-label="Página anterior de la galería">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="gallery-track" id="gallery-track">
+        {galleryPages.map((page) => (
+          <div class="gallery-page" role="list">
+            {page.map((item, i) => (
+              <div class="gallery-item reveal" data-reveal data-reveal-delay={(i % 3) + 1} role="listitem">
+                <button type="button" class="gallery-img-wrap" aria-label={`Ampliar foto: ${item.caption}`}>
+                  <Image src={item.src} alt={item.alt} loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
+                  <div class="gallery-overlay" aria-hidden="true"></div>
+                  <span class="gallery-caption">{item.caption}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
-      <div class="gallery-item reveal gallery-item--2" data-reveal data-reveal-delay="2" role="listitem">
-        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Tomahawk">
-          <Image src={galleryTomahawk} alt="Tomahawk de Los Ches con chimichurri" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <span class="gallery-caption">Tomahawk</span>
-        </button>
-      </div>
-      <div class="gallery-item reveal gallery-item--3" data-reveal data-reveal-delay="1" role="listitem">
-        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Bife Ancho Angus">
-          <Image src={galleryAngus} alt="Bife Ancho Angus sellado — corte importado al kamado" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <span class="gallery-caption">Bife Ancho Angus</span>
-        </button>
-      </div>
-      <div class="gallery-item reveal gallery-item--4" data-reveal data-reveal-delay="2" role="listitem">
-        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Lomo Saltado">
-          <Image src={galleryLomo} alt="Lomo Saltado Los Ches — la fusión que nos define" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <span class="gallery-caption">Lomo Saltado</span>
-        </button>
-      </div>
-      <div class="gallery-item reveal gallery-item--5" data-reveal data-reveal-delay="3" role="listitem">
-        <button type="button" class="gallery-img-wrap" aria-label="Ampliar foto: Che Burger">
-          <Image src={galleryBurger} alt="Che Burger — hamburguesa Angus con todo" loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
-          <div class="gallery-overlay" aria-hidden="true"></div>
-          <span class="gallery-caption">Che Burger</span>
-        </button>
-      </div>
+      <button type="button" class="gallery-nav gallery-nav--next" aria-label="Página siguiente de la galería">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
+    <p class="gallery-page-indicator" aria-live="polite">Página <span>1</span> de {galleryPages.length}</p>
   </div>
 </section>
 
@@ -1403,32 +1415,82 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   margin-inline: auto;
 }
 
-.gallery-grid {
+/* Carrusel: flechas a los lados + pista con scroll-snap nativo (1 página por vista) */
+.gallery-carousel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.gallery-track {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* aire para que la sombra flotante no se recorte */
+  padding-block: var(--space-3);
+}
+.gallery-track::-webkit-scrollbar { display: none; }
+
+.gallery-page {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-rows: repeat(2, auto);
   gap: var(--space-4);
 }
 
-.gallery-item--1 { grid-column: 1; grid-row: 1; }
-.gallery-item--2 { grid-column: 2; grid-row: 1 / 3; }
-.gallery-item--3 { grid-column: 3; grid-row: 1; }
-.gallery-item--4 { grid-column: 1; grid-row: 2; }
-.gallery-item--5 { grid-column: 3; grid-row: 2; }
+.gallery-nav {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: oklch(0.16 0.012 45 / 0.7);
+  color: var(--color-ink);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  cursor: pointer;
+  transition: background var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out),
+              opacity var(--duration-base) var(--ease-out);
+}
+.gallery-nav:hover { background: oklch(0.55 0.19 40 / 0.35); border-color: oklch(0.63 0.245 35 / 0.5); }
+.gallery-nav:disabled { opacity: 0.3; cursor: default; }
+.gallery-nav:focus-visible { outline: 2px solid oklch(0.63 0.245 35); outline-offset: 2px; }
+
+.gallery-page-indicator {
+  text-align: center;
+  margin-top: var(--space-4);
+  color: var(--color-ink-muted);
+  font-size: 0.9rem;
+}
 
 .gallery-img-wrap {
   width: 100%;
-  height: 100%;
-  min-height: 220px;
+  aspect-ratio: 4 / 3;     /* llena la columna, proporción uniforme entre todos los tiles */
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  /* look flotante: elevación + bobbing sutil */
+  box-shadow: 0 14px 34px oklch(0 0 0 / 0.38);
 }
 
-.gallery-item--2 .gallery-img-wrap { min-height: 460px; }
-.gallery-item--2 .gallery-img-wrap { background-color: oklch(0.11 0.01 45); }
-.gallery-item--2 .gallery-img { object-fit: cover; object-position: 25% center; }
+@media (prefers-reduced-motion: no-preference) {
+  .gallery-item .gallery-img-wrap { animation: gallery-float 6s ease-in-out infinite; }
+  .gallery-item:nth-child(3n+2) .gallery-img-wrap { animation-delay: -2s; }
+  .gallery-item:nth-child(3n) .gallery-img-wrap { animation-delay: -4s; }
+}
+
+@keyframes gallery-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
 
 .gallery-img {
   width: 100%;
@@ -1469,21 +1531,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 @media (max-width: 768px) {
-  .gallery-grid {
+  .gallery-page {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: none;
+    grid-template-rows: repeat(3, auto);
   }
-
-  .gallery-item--1,
-  .gallery-item--2,
-  .gallery-item--3,
-  .gallery-item--4,
-  .gallery-item--5 {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .gallery-item--2 .gallery-img-wrap { min-height: 220px; }
+  .gallery-nav { width: 2.25rem; height: 2.25rem; }
 }
 
 /* ─── MENU ────────────────────────────────────────────────────────────────── */
@@ -3418,6 +3470,34 @@ lightbox?.addEventListener('click', (e) => {
 });
 
 lightbox?.querySelector('.lightbox-close')?.addEventListener('click', () => lightbox?.close());
+
+/* ─── Gallery pagination (scroll-snap + arrows) ──────────────────────────── */
+const galTrack = document.getElementById('gallery-track');
+const galPages = galTrack ? [...galTrack.querySelectorAll('.gallery-page')] : [];
+const galPrev = document.querySelector('.gallery-nav--prev');
+const galNext = document.querySelector('.gallery-nav--next');
+const galCounter = document.querySelector('.gallery-page-indicator span');
+let galPage = 0;
+
+function galUpdate() {
+  if (galPrev) galPrev.disabled = galPage === 0;
+  if (galNext) galNext.disabled = galPage === galPages.length - 1;
+  if (galCounter) galCounter.textContent = String(galPage + 1);
+}
+function galGoTo(i) {
+  if (!galTrack) return;
+  galPage = Math.max(0, Math.min(galPages.length - 1, i));
+  galTrack.scrollTo({ left: galPage * galTrack.clientWidth, behavior: 'smooth' });
+  galUpdate();
+}
+galPrev?.addEventListener('click', () => galGoTo(galPage - 1));
+galNext?.addEventListener('click', () => galGoTo(galPage + 1));
+// keep state in sync with swipe / manual scroll
+galTrack?.addEventListener('scroll', () => {
+  const i = Math.round(galTrack.scrollLeft / galTrack.clientWidth);
+  if (i !== galPage) { galPage = i; galUpdate(); }
+}, { passive: true });
+galUpdate();
 
 /* ─── Highlight today's opening hours ────────────────────────────────────── */
 const todayRow = document.querySelector(`.hours-row[data-day="${new Date().getDay()}"]`);
