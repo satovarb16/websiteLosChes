@@ -34,12 +34,20 @@ test('WhatsApp CTA links are present and valid', async ({ page }) => {
   }
 });
 
-test('gallery renders all 5 images', async ({ page }) => {
+test('gallery renders 12 images across 2 pages', async ({ page }) => {
   const items = page.locator('.gallery-item');
-  await expect(items).toHaveCount(5);
-  for (let i = 0; i < 5; i++) {
-    await expect(items.nth(i).locator('img')).toBeVisible();
-  }
+  await expect(items).toHaveCount(12);
+  await expect(page.locator('.gallery-page')).toHaveCount(2);
+});
+
+test('gallery pagination: next arrow advances to page 2', async ({ page }) => {
+  const prev = page.locator('.gallery-nav--prev');
+  const next = page.locator('.gallery-nav--next');
+  await expect(prev).toBeDisabled();
+  await next.click();
+  await expect(page.locator('.gallery-page-indicator span')).toHaveText('2');
+  await expect(next).toBeDisabled();
+  await expect(prev).toBeEnabled();
 });
 
 test('navigation links point to existing sections', async ({ page }) => {

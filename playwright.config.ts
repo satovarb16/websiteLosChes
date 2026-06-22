@@ -8,6 +8,9 @@ export default defineConfig({
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     baseURL: 'http://localhost:4321',
+    // Emulate a real a11y setting so decorative looping animations (gallery float,
+    // hero zoom) don't keep elements perpetually moving and break click stability.
+    reducedMotion: 'reduce',
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
