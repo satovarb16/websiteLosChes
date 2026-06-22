@@ -207,6 +207,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
 
 <!-- ─── DONENESS SECTION ───────────────────────────────────────────────────── -->
+<div class="doneness-scroll-wrapper">
 <section class="doneness-section" aria-labelledby="doneness-heading">
   <div class="section-inner">
     <div class="doneness-layout">
@@ -251,6 +252,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     </div>
   </div>
 </section>
+</div>
 
 
 <!-- ─── MARQUEE ───────────────────────────────────────────────────────────── -->
@@ -2637,7 +2639,29 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 }
 
 /* ─── DONENESS SECTION ──────────────────────────────────────────────────────── */
-.doneness-section { padding-block: clamp(4rem, 8vw, 8rem); }
+.doneness-scroll-wrapper {
+  height: 300vh;
+}
+
+.doneness-section {
+  padding-block: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.doneness-section > .section-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(80px + 1.5rem);
+  padding-bottom: 1.5rem;
+  box-sizing: border-box;
+}
 
 .doneness-heading {
   font-size: clamp(2.75rem, 5.5vw, 5rem);
@@ -2650,18 +2674,19 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   display: grid;
   grid-template-columns: 45% 1fr;
   gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
 }
 
 .doneness-left {
-  position: sticky;
-  top: calc(80px + var(--space-8));
+  position: relative;
 }
 
 .doneness-image-panel {
   position: relative;
-  aspect-ratio: 3/4;
-  transition: transform 400ms var(--ease-out);
+  height: min(calc(100vh - 200px), 520px);
+  aspect-ratio: unset;
 }
 
 .doneness-img {
@@ -2671,7 +2696,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 380ms var(--ease-out), filter 380ms var(--ease-out);
+  transition: filter 380ms var(--ease-out);
 }
 
 .doneness-img {
@@ -2699,59 +2724,60 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   margin: 0;
   display: flex;
   flex-direction: column;
+  height: min(calc(100vh - 200px), 600px);
 }
 
+/* --f (0..1) is the per-item focus factor, driven continuously by scroll on
+   desktop. Every accent below is a pure function of --f so they move together. */
 .doneness-item {
-  padding-block: clamp(2.5rem, 5vw, 5rem);
+  --f: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(0.5rem, 1vw, 0.875rem);
+  overflow: hidden;
   border-bottom: 1px solid var(--color-border);
-  opacity: 0.35;
-  transition: opacity 300ms var(--ease-out);
+  opacity: calc(0.38 + 0.62 * var(--f));
   position: relative;
   cursor: default;
 }
 
 .doneness-item:first-child { border-top: 1px solid var(--color-border); }
 
-.doneness-item.is-active { opacity: 1; }
-
 .doneness-item::before {
   content: '';
   position: absolute;
   left: -2px;
-  top: 24px;
-  bottom: 24px;
+  top: 8px;
+  bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--color-primary) 30%, var(--color-primary) 70%, transparent);
-  transform: scaleY(0);
-  transform-origin: top center;
-  transition: transform 220ms var(--ease-out);
+  transform: scaleY(var(--f));
+  transform-origin: center;
   border-radius: 1px;
 }
-
-.doneness-item.is-active::before { transform: scaleY(1); }
 
 .doneness-num {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.85;
-  color: oklch(0.63 0.245 35 /0.12);
-  margin-bottom: var(--space-3);
-  transition: color 200ms var(--ease-out);
+  color: oklch(0.63 0.245 35 / calc(0.12 + 0.88 * var(--f)));
+  margin-bottom: var(--space-2);
 }
-
-.doneness-item.is-active .doneness-num { color: var(--color-primary); }
 
 .doneness-title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
   color: var(--color-ink);
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .doneness-meta {
@@ -2761,28 +2787,40 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: var(--space-3);
-  opacity: 0.7;
+  margin-bottom: var(--space-2);
+  opacity: calc(0.55 + 0.45 * var(--f));
 }
-
-.doneness-item.is-active .doneness-meta { opacity: 1; }
 
 .doneness-desc {
   font-size: 0.9375rem;
   color: var(--color-ink-muted);
-  line-height: 1.7;
+  line-height: 1.5;
   max-width: 42ch;
 }
 
 @media (max-width: 768px) {
+  .doneness-scroll-wrapper { height: auto; }
+
+  .doneness-section {
+    position: relative;
+    height: auto;
+    padding-block: clamp(4rem, 8vw, 8rem);
+    overflow: visible;
+    display: block;
+  }
+
+  .doneness-section > .section-inner {
+    height: auto;
+    padding-top: 1.5rem;
+    display: block;
+  }
+
+  .doneness-items { height: auto; }
+
+
   .doneness-layout {
     grid-template-columns: 1fr;
     gap: var(--space-8);
-  }
-
-  .doneness-left {
-    position: relative;
-    top: auto;
   }
 
   .doneness-image-panel {
@@ -2790,8 +2828,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
     aspect-ratio: unset;
   }
 
-  .doneness-item { opacity: 1; }
+  .doneness-img { transition: opacity 380ms var(--ease-out), filter 380ms var(--ease-out); }
+
+  .doneness-item {
+    flex: unset;
+    min-height: auto;
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    display: block;
+    opacity: 1;
+    transition: opacity 300ms var(--ease-out);
+  }
   .doneness-item:not(.is-active) { opacity: 0.6; }
+
+  /* Mobile uses discrete is-active (IntersectionObserver), so transitions help. */
+  .doneness-item::before { transition: transform 220ms var(--ease-out); }
+  .doneness-item.is-active::before { transform: scaleY(1); }
+  .doneness-num { transition: color 200ms var(--ease-out); }
+  .doneness-item.is-active .doneness-num { color: var(--color-primary); }
+  .doneness-item.is-active .doneness-meta { opacity: 1; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -3263,33 +3317,77 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObserver.observe(el));
 
 /* ─── Doneness scroll sync ──────────────────────────────────────────────── */
-const donenessItems = document.querySelectorAll('.doneness-item');
-const donenessImgs  = document.querySelectorAll('.doneness-img');
+const donenessWrapper = document.querySelector('.doneness-scroll-wrapper');
+const donenessItems   = document.querySelectorAll('.doneness-item');
+const donenessImgs    = document.querySelectorAll('.doneness-img');
 
-const donenessPanel = document.querySelector('.doneness-image-panel');
+if (donenessWrapper && donenessItems.length) {
+  const lastIndex = donenessItems.length - 1;
 
-function setDoneness(index) {
-  donenessItems.forEach((item, i) => {
-    const active = i === index;
-    item.classList.toggle('is-active', active);
-    item.setAttribute('aria-current', active ? 'true' : 'false');
-  });
-  donenessImgs.forEach((img, i) => {
-    img.classList.toggle('is-active', i === index);
-  });
-  if (donenessPanel) {
-    donenessPanel.style.transform = `translateY(${index * 36}px)`;
+  /* Toggles is-active for aria + the active meat's drop-shadow. On desktop the
+     visual accent is driven by --f (continuous), so is-active is inert there. */
+  function setActiveDoneness(index) {
+    donenessItems.forEach((item, i) => {
+      const active = i === index;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+    donenessImgs.forEach((img, i) => {
+      img.classList.toggle('is-active', i === index);
+    });
   }
-}
 
-if (donenessItems.length) {
-  setDoneness(0);
+  /* Continuous (desktop) — every accent follows scroll through a single focus
+     factor --f, so number, bar, meta and text light up together.
+     pos is a fractional position in [0, lastIndex]. */
+  function applyContinuous(pos) {
+    donenessItems.forEach((item, i) => {
+      const f = Math.max(0, 1 - Math.abs(i - pos));
+      item.style.setProperty('--f', f.toFixed(3));
+    });
+    donenessImgs.forEach((img, i) => {
+      const dist = Math.abs(i - pos);
+      img.style.opacity = Math.max(0, 1 - dist).toFixed(3);
+    });
+    setActiveDoneness(Math.round(pos));
+  }
 
+  function clearInline() {
+    donenessItems.forEach(item => { item.style.removeProperty('--f'); });
+    donenessImgs.forEach(img => { img.style.opacity = ''; });
+  }
+
+  function syncDoneness() {
+    if (window.innerWidth <= 768) return;
+    const scrolled    = -donenessWrapper.getBoundingClientRect().top;
+    const totalScroll = donenessWrapper.offsetHeight - window.innerHeight;
+    const progress = Math.min(Math.max(scrolled / totalScroll, 0), 1);
+    applyContinuous(progress * lastIndex);
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { syncDoneness(); ticking = false; });
+  }
+
+  if (window.innerWidth > 768) syncDoneness();
+  else setActiveDoneness(0);
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) clearInline();
+    else syncDoneness();
+  }, { passive: true });
+
+  /* Mobile fallback: IntersectionObserver drives the discrete accent. */
   const donenessObserver = new IntersectionObserver((entries) => {
+    if (window.innerWidth > 768) return;
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        const index = parseInt(entry.target.dataset.index, 10);
-        setDoneness(index);
+        clearInline();
+        setActiveDoneness(parseInt(entry.target.dataset.index, 10));
       }
     }
   }, { rootMargin: '-35% 0px -50% 0px', threshold: 0 });
