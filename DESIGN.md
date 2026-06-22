@@ -9,7 +9,7 @@ Strategy: **Committed** — el ember palette lleva el 40-60% de la superficie co
 | `--color-bg` | `oklch(0.13 0.01 50)` | `#121212` | Background principal |
 | `--color-surface` | `oklch(0.18 0.012 50)` | `#1e1a17` | Cards, secciones elevadas |
 | `--color-surface-2` | `oklch(0.22 0.015 50)` | `#26201b` | Hover states, separadores |
-| `--color-primary` | `oklch(0.75 0.14 85)` | `#D4AF37` | Gold — CTA, headings accent, links |
+| `--color-primary` | `#FF4D00` | `#FF4D00` | Ember orange — CTA, headings accent, links |
 | `--color-secondary` | `oklch(0.55 0.19 40)` | `#E65100` | Ember orange — accents, highlights |
 | `--color-tertiary` | `oklch(0.72 0.17 75)` | `#FFB300` | Amber — warmth, hover states |
 | `--color-ink` | `oklch(0.93 0.01 85)` | `#f0ece4` | Body text principal |
