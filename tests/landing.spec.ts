@@ -1,6 +1,21 @@
 import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
+  // Kill decorative looping animations (e.g. gallery-float) so elements stay
+  // bbox-stable for Playwright actionability. Playwright's reducedMotion
+  // emulation does not reliably suppress them in this setup, so disable in-page.
+  await page.addInitScript(() => {
+    const css =
+      '*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}';
+    const inject = () => {
+      const style = document.createElement('style');
+      style.textContent = css;
+      (document.head || document.documentElement).appendChild(style);
+    };
+    // addInitScript runs at document-start; documentElement may not exist yet.
+    if (document.documentElement) inject();
+    else document.addEventListener('DOMContentLoaded', inject);
+  });
   await page.goto('/');
 });
 

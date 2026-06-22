@@ -8,9 +8,10 @@ export default defineConfig({
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     baseURL: 'http://localhost:4321',
-    // Emulate a real a11y setting so decorative looping animations (gallery float,
-    // hero zoom) don't keep elements perpetually moving and break click stability.
-    reducedMotion: 'reduce',
+    // NOTE: Playwright's reducedMotion emulation does NOT suppress the page's
+    // looping animations in this setup. Decorative animations (gallery float,
+    // hero zoom) are disabled in-page via addInitScript in tests/landing.spec.ts
+    // to keep elements bbox-stable for actionability.
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
