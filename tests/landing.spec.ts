@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -70,4 +70,39 @@ test('mobile: hamburger menu opens navigation', async ({ page, isMobile }) => {
   // The button is real, visible, and functional — this is a Chromium rendering quirk.
   await menuBtn.click({ force: true });
   await expect(page.locator('#nav-menu')).toBeVisible();
+});
+
+test('menu tabs: clicking a tab shows the correct panel', async ({ page }) => {
+  await page.locator('.tab-btn[data-tab="parrillas"]').click();
+  await expect(page.locator('#panel-parrillas')).toBeVisible();
+  await expect(page.locator('#panel-piqueos')).not.toBeVisible();
+});
+
+test('menu tabs: aria-selected updates correctly on tab click', async ({ page }) => {
+  await page.locator('.tab-btn[data-tab="parrillas"]').click();
+  expect(await page.locator('.tab-btn[data-tab="parrillas"]').getAttribute('aria-selected')).toBe('true');
+  expect(await page.locator('.tab-btn[data-tab="piqueos"]').getAttribute('aria-selected')).toBe('false');
+});
+
+async function openLightbox(page: Page) {
+  const img = page.locator('.gallery-img-wrap').first();
+  await img.scrollIntoViewIfNeeded();
+  await img.click();
+  await expect(page.locator('#lightbox')).toBeVisible();
+}
+
+test('lightbox: clicking a gallery image opens the lightbox', async ({ page }) => {
+  await openLightbox(page);
+});
+
+test('lightbox: close button closes the lightbox', async ({ page }) => {
+  await openLightbox(page);
+  await page.locator('.lightbox-close').click();
+  await expect(page.locator('#lightbox')).not.toBeVisible();
+});
+
+test('lightbox: ESC key closes the lightbox', async ({ page }) => {
+  await openLightbox(page);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#lightbox')).not.toBeVisible();
 });
