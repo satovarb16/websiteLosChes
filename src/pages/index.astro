@@ -2592,8 +2592,11 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 }
 
 /* ─── STORY: 60/40 — más imagen, más carácter ────────────────────────────── */
-.story--image-left .story-inner  { grid-template-columns: 60% 40%; }
-.story--image-right .story-inner { grid-template-columns: 40% 60%; }
+/* fr en vez de % : con porcentajes (60%+40%=100%) el `gap` se sumaba encima y
+   desbordaba unos px en landscape/tablet. fr descuenta el gap del reparto. */
+.story--image-left .story-inner  { grid-template-columns: 3fr 2fr; }
+.story--image-right .story-inner { grid-template-columns: 2fr 3fr; }
+.story-text, .story-image { min-width: 0; }
 
 /* En mobile cada historia colapsa a 1 columna. Estas reglas (2 clases) deben
    ganar por especificidad a las de arriba — la media query genérica .story-inner
