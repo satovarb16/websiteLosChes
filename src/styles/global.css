@@ -55,6 +55,10 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Clip horizontal overflow at the root too: body alone doesn't contain the
+     position:fixed off-canvas nav drawer (it escapes body's overflow), so the
+     closed drawer added a phantom horizontal scroll on phones/tablets. */
+  overflow-x: hidden;
 }
 
 body {
