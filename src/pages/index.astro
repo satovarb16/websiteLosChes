@@ -35,14 +35,14 @@ const galleryImages = [
   { src: galeria1,  alt: "Parrilla para compartir de Los Ches — cortes, chorizos, papas y ensalada", caption: "Parrilla para compartir" },
   { src: galeria2,  alt: "Corte a la parrilla con chimichurri de la casa",          caption: "Bife al chimichurri" },
   { src: galeria3,  alt: "Entraña a la parrilla fileteada con chimichurri",         caption: "Entraña fileteada" },
-  { src: galeria4,  alt: "Sánguche de pollo crocante con salsa criolla",            caption: "Pan con pollo crocante" },
+  { src: galeria4,  alt: "Sánguche de pollo crocante con salsa criolla",            caption: "Pan con pollo crocante", pos: "50% 82%" },
   { src: galeria5,  alt: "Che Burger con papas y cerveza artesanal",                caption: "Che Burger" },
   { src: galeria6,  alt: "Panceta crocante a la parrilla",                          caption: "Panceta al fuego" },
-  { src: galeria7,  alt: "Bife ancho Angus sellado con chimichurri",               caption: "Bife ancho Angus" },
+  { src: galeria7,  alt: "Bife ancho Angus sellado con chimichurri",               caption: "Bife ancho Angus", pos: "50% 92%" },
   { src: galeria8,  alt: "Tostadas con tomate y jamón crudo",                       caption: "Bruschettas de la casa" },
   { src: galeria9,  alt: "Pan con carne al horno fileteada",                        caption: "Sánguche de asado" },
   { src: galeria10, alt: "Tomahawk a la parrilla con espárragos y champiñones",     caption: "Tomahawk a la parrilla" },
-  { src: galeria11, alt: "Chorizos artesanales a la parrilla",                      caption: "Chorizos artesanales" },
+  { src: galeria11, alt: "Chorizos artesanales a la parrilla",                      caption: "Chorizos artesanales", pos: "50% 100%", zoom: 1.30 },
   { src: galeria12, alt: "Salteado de langostinos con papas y arroz",              caption: "Saltado de mariscos" },
 ];
 const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
@@ -305,7 +305,7 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
             {page.map((item, i) => (
               <div class="gallery-item reveal" data-reveal data-reveal-delay={(i % 3) + 1} role="listitem">
                 <button type="button" class="gallery-img-wrap" aria-label={`Ampliar foto: ${item.caption}`}>
-                  <Image src={item.src} alt={item.alt} loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} />
+                  <Image src={item.src} alt={item.alt} loading="lazy" class="gallery-img" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 800px" format="webp" quality={82} style={`--gal-pos:${item.pos ?? '50% 50%'};--gal-zoom:${item.zoom ?? 1};${item.fit ? `object-fit:${item.fit};` : ''}`} />
                   <div class="gallery-overlay" aria-hidden="true"></div>
                 </button>
               </div>
@@ -1486,24 +1486,18 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
   box-shadow: 0 14px 34px oklch(0 0 0 / 0.38);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .gallery-item .gallery-img-wrap { animation: gallery-float 6s ease-in-out infinite; }
-  .gallery-item:nth-child(3n+2) .gallery-img-wrap { animation-delay: -2s; }
-  .gallery-item:nth-child(3n) .gallery-img-wrap { animation-delay: -4s; }
-}
-
-@keyframes gallery-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
 .gallery-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--gal-pos, 50% 50%);
+  transform: scale(var(--gal-zoom, 1));
   display: block;
   transition: transform 250ms var(--ease-out);
 }
+
+/* fotos en object-fit:contain — fondo oscuro para que las bandas no canten */
+.gallery-img[style*="contain"] { background: oklch(0.16 0.01 40); }
 
 .gallery-overlay {
   position: absolute;
@@ -1525,7 +1519,7 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .gallery-img-wrap:hover .gallery-img { transform: scale(1.07); }
+  .gallery-img-wrap:hover .gallery-img { transform: scale(calc(var(--gal-zoom, 1) * 1.07)); }
   .gallery-img-wrap:hover .gallery-overlay { opacity: 1; }
   .gallery-img-wrap:hover {
     box-shadow:
