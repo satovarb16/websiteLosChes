@@ -2735,6 +2735,9 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
 .doneness-image-panel {
   position: relative;
   aspect-ratio: 3/4;
+  /* Capped so the sticky column is short enough to stay pinned through all
+     four items — a full-width panel is ~viewport-tall and releases early. */
+  max-width: 320px;
   transition: transform 400ms var(--ease-out);
 }
 
@@ -2846,13 +2849,19 @@ const galleryPages = [galleryImages.slice(0, 6), galleryImages.slice(6, 12)];
     gap: var(--space-8);
   }
 
+  /* display: contents lifts the heading + image panel into the single-column
+     grid so the image panel can stick across the whole items list (its limiting
+     ancestor becomes .doneness-layout, not the short .doneness-left). */
   .doneness-left {
-    position: relative;
-    top: auto;
+    display: contents;
   }
 
   .doneness-image-panel {
+    position: sticky;
+    top: calc(80px + var(--space-4));
+    z-index: 1;
     height: 260px;
+    max-width: none;
     aspect-ratio: unset;
   }
 
