@@ -65,7 +65,10 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (not hidden) so body stays out of scroll-container mode:
+     `overflow-x: hidden` promotes overflow-y to `auto`, which makes body a
+     scroll container and breaks `position: sticky` descendants in Safari. */
+  overflow-x: clip;
 }
 
 /* ─── Mesh gradient background ───────────────────────────────────────────── */
